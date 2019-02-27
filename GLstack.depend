@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1551285740 source:c:\users\david\documents\projects\c++craft\glstack.cpp
+1551304728 source:c:\users\david\documents\projects\c++craft\glstack.cpp
 	<cstdio>
 	<cstdlib>
 	<cmath>
@@ -7,10 +7,10 @@
 	<GL/glext.h>
 	"tnm061.hpp"
 	"Shader.hpp"
-	"Texture.hpp"
 	"TriangleSoup.hpp"
 	"Rotator.hpp"
 	"MatrixStack.hpp"
+	"Block.h"
 
 1551285740 c:\users\david\documents\projects\c++craft\glfw\glfw3.h
 	<stddef.h>
@@ -88,4 +88,27 @@
 	<cmath>
 	<cstring>
 	"TriangleSoup.hpp"
+
+1551299193 source:c:\users\david\documents\projects\c++craft\src\block.cpp
+	"Block.h"
+	<iostream>
+	<string>
+	"Texture.hpp"
+
+1551299268 c:\users\david\documents\projects\c++craft\include\block.h
+	<iostream>
+	<string>
+
+1551302184 source:c:\users\david\documents\projects\c++craft\block.cpp
+	"Block.h"
+	<iostream>
+	<string>
+
+1551303711 c:\users\david\documents\projects\c++craft\block.h
+	<iostream>
+	<string>
+	"../Texture.hpp"
+	<GLFW/glfw3.h>
+	<GL/glext.h>
+	"tnm061.hpp"
 

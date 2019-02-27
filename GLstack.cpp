@@ -53,10 +53,11 @@
 // Headers for the other source files that make up this program.
 #include "tnm061.hpp"
 #include "Shader.hpp"
-#include "Texture.hpp"
+//#include "Texture.hpp"
 #include "TriangleSoup.hpp"
 #include "Rotator.hpp"
 #include "MatrixStack.hpp"
+#include "Block.h"
 
 /*
  * setupViewport() - set up the OpenGL viewport.
@@ -68,21 +69,10 @@
  * A callback function would require P to be changed indirectly
  * in some manner, which is somewhat awkward in this case.
  */
-void setupViewport(GLFWwindow *window, GLfloat *P) {
+void setupViewport(GLFWwindow *window, GLfloat *P);
 
-    int width, height;
-
-    // Get window size. It may start out different from the requested
-    // size, and will change if the user resizes the window.
-    glfwGetWindowSize( window, &width, &height );
-
-    // Ugly hack: adjust perspective matrix for non-square aspect ratios
-    P[0] = P[5]*height/width;
-
-    // Set viewport. This is the pixel rectangle we want to draw into.
-    glViewport( 0, 0, width, height ); // The entire window
-}
-
+const float move_speed = 0.0005;
+void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z);
 
 /*
  * main(argc, argv) - the standard C entry point for the program
@@ -91,7 +81,7 @@ int main(int argc, char *argv[]) {
 
 	TriangleSoup earthSphere;
     Texture earthTexture;
-    Shader earthShader;
+    Shader the_shader;
 
  	GLint location_time, location_MV, location_P, location_tex; // Shader uniforms
     float time;
@@ -157,21 +147,22 @@ int main(int argc, char *argv[]) {
     MVstack.init();
 
 	// Create geometry for rendering
-	earthSphere.createSphere(1.0, 30);
-	// soupReadOBJ(&myShape, MESHFILENAME);
-	earthSphere.printInfo();
+	Block test{"pyramid"};
+    test.print_info();
 
 	// Create a shader program object from GLSL code in two files
-	earthShader.createShader("vertexshader.glsl", "fragmentshader.glsl");
+	the_shader.createShader("vertexshader.glsl", "fragmentshader.glsl");
 
 	glEnable(GL_TEXTURE_2D);
-    // Read the texture data from file and upload it to the GPU
-	earthTexture.createTexture("textures/earth.tga");
 
-	location_MV = glGetUniformLocation( earthShader.programID, "MV" );
-	location_P = glGetUniformLocation( earthShader.programID, "P" );
-	location_time = glGetUniformLocation( earthShader.programID, "time" );
-	location_tex = glGetUniformLocation( earthShader.programID, "tex" );
+	location_MV = glGetUniformLocation( the_shader.programID, "MV" );
+	location_P = glGetUniformLocation( the_shader.programID, "P" );
+	location_time = glGetUniformLocation( the_shader.programID, "time" );
+	location_tex = glGetUniformLocation( the_shader.programID, "tex" );
+
+	float x_move = 0;
+	float y_move = 0;
+	float z_move = 0;
 
     // Main loop
     while(!glfwWindowShouldClose(window))
@@ -192,62 +183,28 @@ int main(int argc, char *argv[]) {
 
 		// Handle mouse input
 		rotator.poll(window);
-		//printf("phi = %6.2f, theta = %6.2f\n", rotator.phi, rotator.theta);
 
 		// Activate our shader program.
-		glUseProgram( earthShader.programID );
+		glUseProgram( the_shader.programID );
 
         // Copy the projection matrix P into the shader.
 		glUniformMatrix4fv( location_P, 1, GL_FALSE, P );
-
-        // Tell the shader to use texture unit 0.
-		glUniform1i ( location_tex , 0);
 
 		// Update the uniform time variable.
 		time = (float)glfwGetTime(); // Needed later as well
         glUniform1f( location_time, time );
 
-        // Draw the scene
-        MVstack.push(); // Save the initial, untouched matrix
-
-            // Modify MV according to user input
-            // First, do the view transformations ("camera motion")
-            MVstack.translate(0.0f, 0.0f, -5.0f);
+        // We use MatrixStack code to produce prototype faster
+        MVstack.push();
+            // Camera movement
+            MVstack.translate(0.0f + x_move, 0.0f + y_move, -6.0f + z_move);
             MVstack.rotX(rotator.theta);
             MVstack.rotY(rotator.phi);
-
-            // Then, do the model transformations ("object motion")
-            MVstack.push(); // Save the current matrix on the stack
-
-                // Sun
-                MVstack.rotY(time);
-                MVstack.rotX(-M_PI/2); // Orient the poles along Y axis instead of Z
-                MVstack.scale(0.5f); // Scale unit sphere to radius 0.5
-                // Update the transformation matrix in the shader
-                glUniformMatrix4fv( location_MV, 1, GL_FALSE, MVstack.getCurrentMatrix() );
-                // Render the geometry to draw the sun
-                glBindTexture(GL_TEXTURE_2D, earthTexture.texID);
-                earthSphere.render();
-
-            MVstack.pop(); // Restore the matrix we saved above
-
-            // Earth
-            MVstack.rotY(0.2f*time); // Earth orbit rotation
-            MVstack.translate(1.0f, 0.0f, 0.0f); // Earth orbit radius
-            MVstack.push(); // Save the matrix before the Earth's rotation
-
-                MVstack.rotY(10.0f*time); // Earth's rotation around its axis
-                MVstack.rotX(-M_PI/2); // Orient the poles along Y axis instead of Z
-                MVstack.scale(0.2f); // Scale unit sphere to radius 0.1
-                // Update the transformation matrix in the shader
-                glUniformMatrix4fv( location_MV, 1, GL_FALSE, MVstack.getCurrentMatrix() );
-                // Render the geometry to draw the sun
-                glBindTexture(GL_TEXTURE_2D, earthTexture.texID);
-                earthSphere.render();
-
-            MVstack.pop(); // Restore the matrix we saved above
+            glUniformMatrix4fv( location_MV, 1, GL_FALSE, MVstack.getCurrentMatrix() );
 
         MVstack.pop(); // Restore the initial, untouched matrix
+
+        test.render();
 
 		// Play nice and deactivate the shader program
 		glUseProgram(0);
@@ -258,10 +215,8 @@ int main(int argc, char *argv[]) {
 		// Poll events (read keyboard and mouse input)
 		glfwPollEvents();
 
-        // Exit if the ESC key is pressed (and also if the window is closed).
-        if(glfwGetKey(window, GLFW_KEY_ESCAPE)) {
-          glfwSetWindowShouldClose(window, GL_TRUE);
-        }
+        // Keyboard poll
+        poll_keyboard_input(window, x_move, y_move, z_move);
 
     }
 
@@ -270,4 +225,44 @@ int main(int argc, char *argv[]) {
     glfwTerminate();
 
     return 0;
+}
+
+void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z)
+{
+    if(glfwGetKey(window, GLFW_KEY_ESCAPE)) {
+          glfwSetWindowShouldClose(window, GL_TRUE);
+    }
+    if(glfwGetKey(window, GLFW_KEY_W)) {
+      z += move_speed;
+    }
+    if(glfwGetKey(window, GLFW_KEY_S)) {
+      z -= move_speed;
+    }
+    if(glfwGetKey(window, GLFW_KEY_D)) {
+      x += move_speed;
+    }
+    if(glfwGetKey(window, GLFW_KEY_A)) {
+      x -= move_speed;
+    }
+    if(glfwGetKey(window, GLFW_KEY_SPACE)) {
+      y += move_speed;
+    }
+    if(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)) {
+      y -= move_speed;
+    }
+}
+
+void setupViewport(GLFWwindow *window, GLfloat *P) {
+
+    int width, height;
+
+    // Get window size. It may start out different from the requested
+    // size, and will change if the user resizes the window.
+    glfwGetWindowSize( window, &width, &height );
+
+    // Ugly hack: adjust perspective matrix for non-square aspect ratios
+    P[0] = P[5]*height/width;
+
+    // Set viewport. This is the pixel rectangle we want to draw into.
+    glViewport( 0, 0, width, height ); // The entire window
 }
