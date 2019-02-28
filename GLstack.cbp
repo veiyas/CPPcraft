@@ -30,6 +30,8 @@
 			<Add library="glfw3" />
 			<Add directory="./GLFW" />
 		</Linker>
+		<Unit filename="Block.cpp" />
+		<Unit filename="Block.h" />
 		<Unit filename="GLstack.cpp" />
 		<Unit filename="MatrixStack.cpp" />
 		<Unit filename="MatrixStack.hpp" />
@@ -42,8 +44,6 @@
 		<Unit filename="TriangleSoup.cpp" />
 		<Unit filename="TriangleSoup.hpp" />
 		<Unit filename="fragmentshader.glsl" />
-		<Unit filename="include/Block.h" />
-		<Unit filename="src/Block.cpp" />
 		<Unit filename="tnm061.cpp" />
 		<Unit filename="tnm061.hpp" />
 		<Unit filename="vertexshader.glsl" />

@@ -4,10 +4,13 @@
 
 void Block::set_texture(const char *tex_name)
 {
+    //Convert to c++ string
     const std::string temp1 = tex_name;
+    //Concat with path to texture
     const std::string temp_path = "textures/" + temp1 + ".tga";
+    //Convert to C string
     const char *path = temp_path.c_str();
-
+    //Create texture
     tex = Texture(path);
 }
 
@@ -34,8 +37,8 @@ void Block::render()
 void Block::print_info()
 {
     printf("TriangleSoup information:\n");
-    printf("vertices : %d\n", nverts);
-    printf("triangles: %d\n", ntris);
+    printf("Vertices : %d\n", nverts);
+    printf("Triangles: %d\n", ntris);
 }
 
 Block::Block(const char *tex_name)

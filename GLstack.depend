@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1551304728 source:c:\users\david\documents\projects\c++craft\glstack.cpp
+1551373513 source:c:\users\david\documents\projects\c++craft\glstack.cpp
 	<cstdio>
 	<cstdlib>
 	<cmath>
@@ -67,7 +67,7 @@
 1551285740 source:c:\users\david\documents\projects\c++craft\matrixstack.cpp
 	"MatrixStack.hpp"
 
-1551285740 source:c:\users\david\documents\projects\c++craft\rotator.cpp
+1551373463 source:c:\users\david\documents\projects\c++craft\rotator.cpp
 	"Rotator.hpp"
 
 1551285740 source:c:\users\david\documents\projects\c++craft\shader.cpp
@@ -99,12 +99,12 @@
 	<iostream>
 	<string>
 
-1551302184 source:c:\users\david\documents\projects\c++craft\block.cpp
+1551373859 source:c:\users\david\documents\projects\c++craft\block.cpp
 	"Block.h"
 	<iostream>
 	<string>
 
-1551303711 c:\users\david\documents\projects\c++craft\block.h
+1551373853 c:\users\david\documents\projects\c++craft\block.h
 	<iostream>
 	<string>
 	"../Texture.hpp"

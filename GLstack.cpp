@@ -69,8 +69,9 @@
  * A callback function would require P to be changed indirectly
  * in some manner, which is somewhat awkward in this case.
  */
+//Local function declarations
 void setupViewport(GLFWwindow *window, GLfloat *P);
-
+void create_perspective_matrix(float M[], const float &vfov, const float &aspect, const float &znear, const float &zfar);
 const float move_speed = 0.0005;
 void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z);
 
@@ -136,12 +137,14 @@ int main(int argc, char *argv[]) {
 	// Perspective projection matrix
 	// This is the standard gluPerspective() form of the
     // matrix, with d=4, near=3, far=7 and aspect=1.
-    GLfloat P[16] = {
-		4.0f, 0.0f, 0.0f, 0.0f,
-		0.0f, 4.0f, 0.0f, 0.0f,
-  		0.0f, 0.0f, -2.5f, -1.0f,
-		0.0f, 0.0f, -10.5f, 0.0f
-	};
+//    GLfloat P[16] = {
+//		1.0f, 0.0f, 0.0f, 0.0f,
+//		0.0f, 1.0f, 0.0f, 0.0f,
+//  		0.0f, 0.0f, -2.5f, -1.0f,
+//		0.0f, 0.0f, -20.5f, 0.0f
+//	};
+    GLfloat P[16];
+    create_perspective_matrix(P, 1.0f, 1.0f, 0.1f, 100.0f);
 
     // Intialize the matrix to an identity transformation
     MVstack.init();
@@ -154,6 +157,10 @@ int main(int argc, char *argv[]) {
 	the_shader.createShader("vertexshader.glsl", "fragmentshader.glsl");
 
 	glEnable(GL_TEXTURE_2D);
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glFrustum(-1, -1, -5, -5, 0, 50);
 
 	location_MV = glGetUniformLocation( the_shader.programID, "MV" );
 	location_P = glGetUniformLocation( the_shader.programID, "P" );
@@ -225,6 +232,24 @@ int main(int argc, char *argv[]) {
     glfwTerminate();
 
     return 0;
+}
+
+void create_perspective_matrix(float M[], const float &vfov, const float &aspect, const float &znear, const float &zfar)
+{
+    float f = (cos(vfov/2)) / (sin(vfov/2));
+    float z1 = -1 * ((zfar + znear)/(zfar-znear));
+    float z2 = -1 * ((2*znear*zfar)/(zfar-znear));
+
+    float MTemp[16] = {
+        (f/aspect) , 0.0f     , 0.0f    , 0.0f ,
+        0.0f       , f        , 0.0f    , 0.0f ,
+        0.0f       , 0.0f     , z1      ,-1.0f ,
+        0.0f       , 0.0f     , z2      , 1.0f
+    };
+
+    for(int i=0; i < 16; i++){
+        M[i] = MTemp[i];
+    }
 }
 
 void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z)
