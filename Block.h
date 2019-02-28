@@ -19,19 +19,27 @@ public:
     Block(const Block&) = delete;
     operator=(const Block&) = delete;
 
-    void render() const;
+    //Render the block, code from TNM046
+    void render();
+    //Print info about block
     void print_info() const;
-
+    //Check if the block is surrounded by other block
     bool is_visible();
+    //Translate the cubes vertex coordinates, used to move blocks to correct position in 3D-array
+    void translate_vertices(const float &x, const float &y, const float &z);
 
 protected:
 
 private:
+    //Data
     Texture tex;
-    void set_texture(const char *tex_name);
     const GLfloat block_size = 1.0f;
 
-    GLuint vao; // Vertex array object, the main handle for geometry
+    //Methods
+    void set_texture(const char *tex_name);
+
+    //OpenGL magic
+    GLuint vao = 1; // Vertex array object, the main handle for geometry
     int nverts; // Number of vertices in the vertex array
     int ntris;  // Number of triangles in the index array (may be zero)
     GLuint vertexbuffer; // Buffer ID to bind to GL_ARRAY_BUFFER

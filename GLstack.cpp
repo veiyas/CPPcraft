@@ -109,7 +109,7 @@ int main(int argc, char *argv[]) {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
     // Open a square window (aspect 1:1) to fill half the screen height
-    window = glfwCreateWindow(vidmode->height/2, vidmode->height/2, "GLprimer", NULL, NULL);
+    window = glfwCreateWindow(vidmode->height/2, vidmode->height/2, "GLprimer", nullptr, nullptr);
     if (!window)
     {
         glfwTerminate(); // No window was opened, so we can't continue in any useful way
@@ -143,7 +143,9 @@ int main(int argc, char *argv[]) {
 
 	// Create geometry for rendering
 	Block test{"earth"};
+    test.translate_vertices(1.0f, 1.0f,0);
     test.print_info();
+    Block test2{"moon"};
 
 	// Create a shader program object from GLSL code in two files
 	the_shader.createShader("vertexshader.glsl", "fragmentshader.glsl");
@@ -204,6 +206,7 @@ int main(int argc, char *argv[]) {
         MVstack.pop(); // Restore the initial, untouched matrix
 
         test.render();
+        test2.render();
 
 		// Play nice and deactivate the shader program
 		glUseProgram(0);

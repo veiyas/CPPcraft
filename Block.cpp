@@ -25,20 +25,23 @@ bool Block::is_visible()
     //
 }
 
-void Block::render() const
-{
-    glBindTexture(GL_TEXTURE_2D, tex.texID);
-    glBindVertexArray(vao);
-	glDrawElements(GL_TRIANGLES, 3 * ntris, GL_UNSIGNED_INT, nullptr);
-	// (mode, vertex count, type, element array buffer offset)
-	glBindVertexArray(0);
-}
-
 void Block::print_info() const
 {
     printf("TriangleSoup information:\n");
     printf("Vertices : %d\n", nverts);
     printf("Triangles: %d\n", ntris);
+}
+
+void Block::translate_vertices(const float &x, const float &y, const float &z)
+{
+    for(size_t i = 0; i < 8*nverts; i += 8)
+    {
+        vertexarray[i]   += (2*x);
+        vertexarray[i+1] += (2*y);
+        vertexarray[i+2] += (2*z);
+    }
+
+
 }
 
 Block::Block(const char *tex_name)
@@ -48,14 +51,6 @@ Block::Block(const char *tex_name)
     // The data array contains 8 floats per vertex:
     // coordinate xyz, normal xyz, texcoords st
     const GLfloat vertex_array_data[] = {
-//        -block_size, -block_size, -block_size,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // Vertex 0
-//         block_size, -block_size, -block_size,   0.0f, 0.0f, 1.0f,   1.0f, 0.0f, // Vertex 1
-//        -block_size,  block_size, -block_size,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f,  // Vertex 2
-//         block_size,  block_size, -block_size,   0.0f, 0.0f, 1.0f,   1.0f, 1.0f,  // Vertex 3
-//        -block_size, -block_size,  block_size,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f, // Vertex 4
-//         block_size, -block_size,  block_size,   0.0f, 0.0f, 1.0f,   1.0f, 1.0f, // Vertex 5
-//        -block_size,  block_size,  block_size,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f,  // Vertex 6
-//         block_size,  block_size,  block_size,   0.0f, 0.0f, 1.0f,   1.0f, 1.0f  // Vertex 7
 
         //topp botten
         -block_size, -block_size, -block_size,   0.0f, -1.0f, 0.0f,   0.75f, 0.33f, // Vertex 0
@@ -115,8 +110,11 @@ Block::Block(const char *tex_name)
     for(int i=0; i<3*ntris; i++) {
         indexarray[i]=index_array_data[i];
     }
+}
 
-	// Generate one vertex array object (VAO) and bind it
+void Block::render()
+{
+    // Generate one vertex array object (VAO) and bind it
 	glGenVertexArrays(1, &(vao));
 	glBindVertexArray(vao);
 
@@ -159,4 +157,11 @@ Block::Block(const char *tex_name)
 	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
  	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+ 	//Bind texture
+    glBindTexture(GL_TEXTURE_2D, tex.texID);
+    glBindVertexArray(vao);
+
+    //Render
+	glDrawElements(GL_TRIANGLES, 3 * ntris, GL_UNSIGNED_INT, nullptr);
 }
