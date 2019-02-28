@@ -16,10 +16,11 @@ class Block
 public:
     Block(const char *tex_name);
     ~Block();
-    Block(const Block& other) = delete;
+    Block(const Block&) = delete;
+    operator=(const Block&) = delete;
 
-    void render();
-    void print_info();
+    void render() const;
+    void print_info() const;
 
     bool is_visible();
 
@@ -28,7 +29,7 @@ protected:
 private:
     Texture tex;
     void set_texture(const char *tex_name);
-    const int block_size = 1;
+    const GLfloat block_size = 1.0f;
 
     GLuint vao; // Vertex array object, the main handle for geometry
     int nverts; // Number of vertices in the vertex array

@@ -135,22 +135,14 @@ int main(int argc, char *argv[]) {
     glfwSwapInterval(0); // Do not wait for screen refresh between frames
 
 	// Perspective projection matrix
-	// This is the standard gluPerspective() form of the
-    // matrix, with d=4, near=3, far=7 and aspect=1.
-//    GLfloat P[16] = {
-//		1.0f, 0.0f, 0.0f, 0.0f,
-//		0.0f, 1.0f, 0.0f, 0.0f,
-//  		0.0f, 0.0f, -2.5f, -1.0f,
-//		0.0f, 0.0f, -20.5f, 0.0f
-//	};
     GLfloat P[16];
-    create_perspective_matrix(P, 1.0f, 1.0f, 0.1f, 100.0f);
+    create_perspective_matrix(P, 1.0f, 1.0f, 0.0f, 100.0f);
 
     // Intialize the matrix to an identity transformation
     MVstack.init();
 
 	// Create geometry for rendering
-	Block test{"pyramid"};
+	Block test{"earth"};
     test.print_info();
 
 	// Create a shader program object from GLSL code in two files
@@ -264,16 +256,16 @@ void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z)
       z -= move_speed;
     }
     if(glfwGetKey(window, GLFW_KEY_D)) {
-      x += move_speed;
-    }
-    if(glfwGetKey(window, GLFW_KEY_A)) {
       x -= move_speed;
     }
+    if(glfwGetKey(window, GLFW_KEY_A)) {
+      x += move_speed;
+    }
     if(glfwGetKey(window, GLFW_KEY_SPACE)) {
-      y += move_speed;
+      y -= move_speed;
     }
     if(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)) {
-      y -= move_speed;
+      y += move_speed;
     }
 }
 

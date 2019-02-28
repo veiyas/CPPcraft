@@ -25,16 +25,16 @@ bool Block::is_visible()
     //
 }
 
-void Block::render()
+void Block::render() const
 {
     glBindTexture(GL_TEXTURE_2D, tex.texID);
     glBindVertexArray(vao);
-	glDrawElements(GL_TRIANGLES, 3 * ntris, GL_UNSIGNED_INT, (void*)0);
+	glDrawElements(GL_TRIANGLES, 3 * ntris, GL_UNSIGNED_INT, nullptr);
 	// (mode, vertex count, type, element array buffer offset)
 	glBindVertexArray(0);
 }
 
-void Block::print_info()
+void Block::print_info() const
 {
     printf("TriangleSoup information:\n");
     printf("Vertices : %d\n", nverts);
@@ -101,19 +101,6 @@ Block::Block(const char *tex_name)
         20,23,22,
         17,16,18,
         17,18,19
-
-//        0,3,1,
-//        0,2,3,
-//        1,4,0,
-//        1,5,4,
-//        4,2,0,
-//        4,6,2,
-//        1,3,7,
-//        1,7,5,
-//        7,2,6,
-//        7,3,2,
-//        4,5,7,
-//        4,7,6
     };
 
     nverts = 24;
@@ -154,7 +141,7 @@ Block::Block(const char *tex_name)
 	// Stride 8 floats (interleaved array with 8 floats per vertex)
 	// Array buffer offset 0, 3 or 6 floats (offset into first vertex)
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
-		8*sizeof(GLfloat), (void*)0); // xyz coordinates
+		8*sizeof(GLfloat), nullptr); // xyz coordinates
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE,
 		8*sizeof(GLfloat), (void*)(3*sizeof(GLfloat))); // normals
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE,
