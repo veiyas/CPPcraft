@@ -114,6 +114,9 @@ Block::Block(const char *tex_name)
 
 void Block::render()
 {
+    //TODO jämför med färdig renderingskod, som fungerar.
+    //TODO möjlig lösning: lägg all bindningskod i en metod som bara körs en gång
+
     // Generate one vertex array object (VAO) and bind it
 	glGenVertexArrays(1, &(vao));
 	glBindVertexArray(vao);
@@ -164,4 +167,7 @@ void Block::render()
 
     //Render
 	glDrawElements(GL_TRIANGLES, 3 * ntris, GL_UNSIGNED_INT, nullptr);
+	glBindVertexArray(0);
+	glBindBuffer(0, 0);
+	glBindTexture(0, 0);
 }

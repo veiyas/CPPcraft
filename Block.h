@@ -2,7 +2,7 @@
 #define BLOCK_H
 #include <iostream>
 #include <string>
-#include "../Texture.hpp"
+#include "Texture.hpp"
 #include <GLFW/glfw3.h>
 
 #ifdef __WIN32__
