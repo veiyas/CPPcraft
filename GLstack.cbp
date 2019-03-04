@@ -32,6 +32,8 @@
 		</Linker>
 		<Unit filename="Block.cpp" />
 		<Unit filename="Block.h" />
+		<Unit filename="Chunk.cpp" />
+		<Unit filename="Chunk.h" />
 		<Unit filename="GLstack.cpp" />
 		<Unit filename="MatrixStack.cpp" />
 		<Unit filename="MatrixStack.hpp" />

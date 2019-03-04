@@ -58,6 +58,7 @@
 #include "Rotator.hpp"
 #include "MatrixStack.hpp"
 #include "Block.h"
+#include "Chunk.h"
 
 /*
  * setupViewport() - set up the OpenGL viewport.
@@ -72,7 +73,7 @@
 //Local function declarations
 void setupViewport(GLFWwindow *window, GLfloat *P);
 void create_perspective_matrix(float M[], const float &vfov, const float &aspect, const float &znear, const float &zfar);
-const float move_speed = 0.0005;
+const float move_speed = 0.05;
 void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z);
 
 /*
@@ -142,19 +143,15 @@ int main(int argc, char *argv[]) {
     MVstack.init();
 
 	// Create geometry for rendering
-	Block test{"earth"};
-    test.translate_vertices(1.0f, 1.0f,0);
-    test.print_info();
-    Block test2{"moon"};
+//	Block test{"textures/earth.tga"};
+//    test.translate_vertices(1.0f, 1.0f, 0);
+//    test.print_info();
+    Block test2{"textures/earth.tga"};
 
 	// Create a shader program object from GLSL code in two files
 	the_shader.createShader("vertexshader.glsl", "fragmentshader.glsl");
 
 	glEnable(GL_TEXTURE_2D);
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	glFrustum(-1, -1, -5, -5, 0, 50);
 
 	location_MV = glGetUniformLocation( the_shader.programID, "MV" );
 	location_P = glGetUniformLocation( the_shader.programID, "P" );
@@ -164,6 +161,9 @@ int main(int argc, char *argv[]) {
 	float x_move = 0;
 	float y_move = 0;
 	float z_move = 0;
+
+    Chunk testchunk{};
+
 
     // Main loop
     while(!glfwWindowShouldClose(window))
@@ -205,8 +205,22 @@ int main(int argc, char *argv[]) {
 
         MVstack.pop(); // Restore the initial, untouched matrix
 
-        test.render();
-        test2.render();
+//        test.render();
+//        test2.render();
+
+//    for(int i = 0; i < 4; i++)
+//    {
+//        for(int j = 0; j < 4; j++)
+//        {
+//            for(int k = 0; k < 4; k++)
+//            {
+//                testarray[i][j][k].render();
+//            }
+//        }
+//    }
+
+        testchunk.render();
+
 
 		// Play nice and deactivate the shader program
 		glUseProgram(0);

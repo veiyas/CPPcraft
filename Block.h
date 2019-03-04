@@ -14,6 +14,7 @@
 class Block
 {
 public:
+    Block();
     Block(const char *tex_name);
     ~Block();
     Block(const Block&) = delete;
@@ -23,10 +24,10 @@ public:
     void render();
     //Print info about block
     void print_info() const;
-    //Check if the block is surrounded by other block
-    bool is_visible();
     //Translate the cubes vertex coordinates, used to move blocks to correct position in 3D-array
     void translate_vertices(const float &x, const float &y, const float &z);
+    //Finalize for rendering
+    void prep_block();
 
 protected:
 

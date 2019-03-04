@@ -4,25 +4,81 @@
 
 void Block::set_texture(const char *tex_name)
 {
-    //Convert to c++ string
-    const std::string temp1 = tex_name;
-    //Concat with path to texture
-    const std::string temp_path = "textures/" + temp1 + ".tga";
-    //Convert to C string
-    const char *path = temp_path.c_str();
-    //Create texture
-    tex = Texture(path);
+    tex = Texture(tex_name);
+}
+
+Block::Block()
+{
+    tex = Texture("textures/lines.tga");
+
+    // The data array contains 8 floats per vertex:
+    // coordinate xyz, normal xyz, texcoords st
+    const GLfloat vertex_array_data[] = {
+
+        //topp botten
+        -block_size, -block_size, -block_size,   0.0f, -1.0f, 0.0f,   0.75f, 0.33f, // Vertex 0
+         block_size, -block_size, -block_size,   0.0f, -1.0f, 0.0f,   1.0f, 0.33f, // Vertex 1
+        -block_size,  block_size, -block_size,   0.0f, 1.0f, 0.0f,   0.25f, 0.67f,  // Vertex 2
+         block_size,  block_size, -block_size,   0.0f, 1.0f, 0.0f,   0.5f, 0.67f,  // Vertex 3
+        -block_size, -block_size,  block_size,   0.0f, -1.0f, 0.0f,   0.75f, 0.67f, // Vertex 4
+         block_size, -block_size,  block_size,   0.0f, -1.0f, 0.0f,   1.0f, 0.67f, // Vertex 5
+        -block_size,  block_size,  block_size,   0.0f, 1.0f, 0.0f,   0.25f, 0.33f,  // Vertex 6
+         block_size,  block_size,  block_size,   0.0f, 1.0f, 0.0f,   0.50f, 0.33f,  // Vertex 7
+
+        //höger vänster
+        -block_size, -block_size, -block_size,   -1.0f, 0.0f, 0.0f,   0.0f, 0.67f, // Vertex 0 - 8
+         block_size, -block_size, -block_size,   1.0f, 0.0f, 0.0f,   0.75f, 0.67f, // Vertex 1 - 9
+        -block_size,  block_size, -block_size,   -1.0f, 0.0f, 0.0f,   0.25f, 0.67f,  // Vertex 2 - 10
+         block_size,  block_size, -block_size,   1.0f, 0.0f, 0.0f,   0.5f, 0.67f,  // Vertex 3 - 11
+        -block_size, -block_size,  block_size,   -1.0f, 0.0f, 0.0f,   0.0f, 0.33f, // Vertex 4 - 12
+         block_size, -block_size,  block_size,   1.0f, 0.0f, 0.0f,   0.75f, 0.33f, // Vertex 5 - 13
+        -block_size,  block_size,  block_size,   -1.0f, 0.0f, 0.0f,   0.25f, 0.33f,  // Vertex 6 - 14
+         block_size,  block_size,  block_size,   1.0f, 0.0f, 0.0f,   0.50f, 0.33f,  // Vertex 7 - 15
+        //fram bak
+        -block_size, -block_size, -block_size,   0.0f, 0.0f, -1.0f,   0.25f, 1.0f, // Vertex 0 - 16
+         block_size, -block_size, -block_size,   0.0f, 0.0f, -1.0f,   0.5f, 1.0f, // Vertex 1 - 17
+        -block_size,  block_size, -block_size,   0.0f, 0.0f, -1.0f,   0.25f, 0.67f,  // Vertex 2 - 18
+         block_size,  block_size, -block_size,   0.0f, 0.0f, -1.0f,   0.5f, 0.67f,  // Vertex 3 - 19
+        -block_size, -block_size,  block_size,   0.0f, 0.0f, 1.0f,   0.25f, 0.0f, // Vertex 4 - 20
+         block_size, -block_size,  block_size,   0.0f, 0.0f, 1.0f,   0.5f, 0.0f, // Vertex 5 - 21
+        -block_size,  block_size,  block_size,   0.0f, 0.0f, 1.0f,   0.25f, 0.33f,  // Vertex 6 - 22
+         block_size,  block_size,  block_size,   0.0f, 0.0f, 1.0f,   0.50f, 0.33f,  // Vertex 7 - 23
+    };
+    const GLuint index_array_data[] = {
+        6,7,2,
+        7,3,2,
+        0,1,5,
+        0,5,4,
+
+        8,12,14,
+        8,14,10,
+        13,9,15,
+        9,11,15,
+
+        20,21,23,
+        20,23,22,
+        17,16,18,
+        17,18,19
+    };
+
+    nverts = 24;
+    ntris = 12;
+
+    vertexarray = new GLfloat[8*nverts];
+    indexarray = new GLuint[3*ntris];
+
+    for(int i=0; i<8*nverts; i++) {
+        vertexarray[i]=vertex_array_data[i];
+    }
+    for(int i=0; i<3*ntris; i++) {
+        indexarray[i]=index_array_data[i];
+    }
 }
 
 Block::~Block()
 {
     delete [] vertexarray;
     delete [] indexarray;
-}
-
-bool Block::is_visible()
-{
-    //
 }
 
 void Block::print_info() const
@@ -41,7 +97,7 @@ void Block::translate_vertices(const float &x, const float &y, const float &z)
         vertexarray[i+2] += (2*z);
     }
 
-
+    prep_block();
 }
 
 Block::Block(const char *tex_name)
@@ -112,11 +168,8 @@ Block::Block(const char *tex_name)
     }
 }
 
-void Block::render()
+void Block::prep_block()
 {
-    //TODO jämför med färdig renderingskod, som fungerar.
-    //TODO möjlig lösning: lägg all bindningskod i en metod som bara körs en gång
-
     // Generate one vertex array object (VAO) and bind it
 	glGenVertexArrays(1, &(vao));
 	glBindVertexArray(vao);
@@ -161,7 +214,12 @@ void Block::render()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
  	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
- 	//Bind texture
+
+}
+
+void Block::render()
+{
+    //Bind texture
     glBindTexture(GL_TEXTURE_2D, tex.texID);
     glBindVertexArray(vao);
 
