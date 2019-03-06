@@ -164,7 +164,7 @@ int main(int argc, char *argv[]) {
 
     Chunk testchunk{};
 
-    Block testblock("textures/test_tex.tga");
+    Block testblock("textures/test_tex2.tga");
     testblock.prep_block();
 
     // Main loop
@@ -207,8 +207,8 @@ int main(int argc, char *argv[]) {
 
         MVstack.pop(); // Restore the initial, untouched matrix
 
-//        testchunk.render();
-        testblock.render();
+        testchunk.render();
+//        testblock.render();
 
 		// Play nice and deactivate the shader program
 		glUseProgram(0);
@@ -216,7 +216,7 @@ int main(int argc, char *argv[]) {
 		// Swap buffers, i.e. display the image and prepare for next frame.
         glfwSwapBuffers(window);
 
-		// Poll events (read keyboard and mouse input)
+		// Poll events (mouse input)
 		glfwPollEvents();
 
         // Keyboard poll

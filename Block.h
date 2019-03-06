@@ -11,10 +11,14 @@
 
 #include "tnm061.hpp"  // To be able to use OpenGL extensions
 
+const float onethirds = 0.33333333333f;
+const float twothirds = 0.66666666667f;
+
 class Block
 {
 public:
-    Block();
+    Block()
+        : Block("textures/test_tex.tga") {}
     Block(const char *tex_name);
     ~Block();
     Block(const Block&) = delete;
@@ -25,7 +29,7 @@ public:
     //Print info about block
     void print_info() const;
     //Translate the cubes vertex coordinates, used to move blocks to correct position in 3D-array
-    void translate_vertices(const float &x, const float &y, const float &z);
+    void translate_block(const float &x, const float &y, const float &z);
     //Finalize for rendering
     void prep_block();
 

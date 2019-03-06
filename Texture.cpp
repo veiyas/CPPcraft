@@ -66,12 +66,12 @@ int Texture::loadUncompressedTGA(FILE *TGAfile) // Load an uncompressed TGA
 	if(bpp == 24)										// If the the image is 24 BPP
 	{
 		this->type	= GL_RGB;								// Set image type to GL_RGB
-		printf("Texture type is GL_RGB\n");
+//		printf("Texture type is GL_RGB\n");
 	}
 	else														// Else it's 32 BPP
 	{
 		this->type	= GL_RGBA;								// Set image type to GL_RGBA
-		printf("Texture type is GL_RGBA\n");
+//		printf("Texture type is GL_RGBA\n");
 	}
 
 	tga.bytesPerPixel	= (tga.bpp / 8);						// Compute the number of BYTES per pixel

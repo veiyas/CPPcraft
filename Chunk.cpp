@@ -9,7 +9,7 @@ Chunk::Chunk()
         {
             for(int k = 0; k < width; k++)
             {
-                the_chunk[i][j][k].translate_vertices(i,j,k);
+                the_chunk[i][j][k].translate_block(i,j,k);
             }
         }
     }
