@@ -11,9 +11,6 @@
 
 #include "tnm061.hpp"  // To be able to use OpenGL extensions
 
-const float onethirds = 0.33333333333f;
-const float twothirds = 0.66666666667f;
-
 class Block
 {
 public:

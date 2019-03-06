@@ -24,9 +24,9 @@ public:
 
 private:
     //Constants
-    const static int LENGTH = 4;
-    const static int WIDTH = 8;
-    const static int HEIGHT = 4;
+    const static int LENGTH = 8;
+    const static int WIDTH =  8;
+    const static int HEIGHT = 8;
 
     //Counters used for constructing 3D representation of chunk
     int num_objects = 0;

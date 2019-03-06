@@ -40,7 +40,7 @@ void Chunk::create_dummy_chunk()
 {
     for(size_t i = 0; i < (LENGTH*WIDTH*HEIGHT); i++)
     {
-        add_object(new Solid(length_step, width_step, height_step));
+        add_object(new Solid(length_step, height_step, width_step));
     }
 }
 

@@ -7,7 +7,7 @@ class Solid : public Block
 {
 public:
     Solid(const float &x, const float &y, const float &z)
-        : Solid("textures/test_tex.tga") {translate_block(x,y,z);}
+        : Solid("textures/grass.tga") {translate_block(x,y,z);}
     Solid(const char *tex_name);
     ~Solid();
 
