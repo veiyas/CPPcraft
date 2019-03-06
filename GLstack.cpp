@@ -161,21 +161,17 @@ int main(int argc, char *argv[]) {
 	float z_move = 0;
 
 /********************************************************
-                TEST AREA
+                        TEST AREA
 ********************************************************/
 
     Chunk test;
-    test.create_dummy_chunk();
-
-//    test.add_object(new Solid(0,0,0));
-//    test.add_object(new Solid(1,0,0));
-//    test.add_object(new Solid(2,0,0));
-//    test.add_object(new Solid(3,0,0));
-//    test.add_object(new Solid(4,0,0));
-//    test.add_object(new Solid(5,0,0));
-
     test.print_chunk_info();
 
+    int gen_test = -256;
+
+/********************************************************
+                        TEST AREA
+********************************************************/
     // Main loop
     while(!glfwWindowShouldClose(window))
     {
@@ -219,9 +215,10 @@ int main(int argc, char *argv[]) {
 /********************************************************
                 RENDERING CODE GOES HERE
 ********************************************************/
+        test.add_object(new Solid(0,0,gen_test));
+        ++gen_test;
+
         test.render();
-
-
 /********************************************************
 
 ********************************************************/

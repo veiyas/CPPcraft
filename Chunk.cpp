@@ -13,6 +13,9 @@ void Chunk::add_object(Block* obj)
 {
     the_chunk[num_objects] = obj;
 
+    if(num_objects == LENGTH*WIDTH*HEIGHT)
+        return;
+
     ++length_step;
 
     if(length_step == LENGTH)

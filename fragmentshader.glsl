@@ -12,5 +12,8 @@ void main() {
      vec4 texcolor = texture(tex, st);
      vec3 nNormal = normalize(interpolatedNormal);
      float diffuse = max(0.0, nNormal.z);
-     color = texcolor * diffuse;
+     //Only ambient light for now
+     color = texcolor;
+
+     //color = texcolor * diffuse;
 }
