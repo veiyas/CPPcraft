@@ -62,6 +62,8 @@
 #include "Solid.h"
 #include "Air.h"
 
+#include <functional>
+
 /*
  * setupViewport() - set up the OpenGL viewport.
  * This should be done for each frame, to handle window resizing.
@@ -158,8 +160,21 @@ int main(int argc, char *argv[]) {
 	float y_move = 0;
 	float z_move = 0;
 
-    Block *test_ptr = new Solid();
-    test_ptr->prep_block();
+/********************************************************
+                TEST AREA
+********************************************************/
+
+    Chunk test;
+    test.create_dummy_chunk();
+
+//    test.add_object(new Solid(0,0,0));
+//    test.add_object(new Solid(1,0,0));
+//    test.add_object(new Solid(2,0,0));
+//    test.add_object(new Solid(3,0,0));
+//    test.add_object(new Solid(4,0,0));
+//    test.add_object(new Solid(5,0,0));
+
+    test.print_chunk_info();
 
     // Main loop
     while(!glfwWindowShouldClose(window))
@@ -201,8 +216,15 @@ int main(int argc, char *argv[]) {
 
         MVstack.pop(); // Restore the initial, untouched matrix
 
-        //Place block rendering here
-        test_ptr->render();
+/********************************************************
+                RENDERING CODE GOES HERE
+********************************************************/
+        test.render();
+
+
+/********************************************************
+
+********************************************************/
 
 		// Play nice and deactivate the shader program
 		glUseProgram(0);

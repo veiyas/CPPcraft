@@ -6,8 +6,8 @@
 class Solid : public Block
 {
 public:
-    Solid()
-        : Solid("textures/test_tex.tga") {}
+    Solid(const float &x, const float &y, const float &z)
+        : Solid("textures/test_tex.tga") {translate_block(x,y,z);}
     Solid(const char *tex_name);
     ~Solid();
 

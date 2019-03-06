@@ -10,7 +10,7 @@
 class Air : public Block
 {
 public:
-    Air() = delete;
+    Air() = default;
      ~Air() = default;
 
     void render() override {return;};

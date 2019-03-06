@@ -46,6 +46,10 @@
 		<Unit filename="TriangleSoup.cpp" />
 		<Unit filename="TriangleSoup.hpp" />
 		<Unit filename="fragmentshader.glsl" />
+		<Unit filename="include/Air.h" />
+		<Unit filename="include/Solid.h" />
+		<Unit filename="src/Air.cpp" />
+		<Unit filename="src/Solid.cpp" />
 		<Unit filename="tnm061.cpp" />
 		<Unit filename="tnm061.hpp" />
 		<Unit filename="vertexshader.glsl" />
