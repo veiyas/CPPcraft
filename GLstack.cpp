@@ -164,6 +164,8 @@ int main(int argc, char *argv[]) {
 
     Chunk testchunk{};
 
+    Block testblock("textures/test_tex.tga");
+    testblock.prep_block();
 
     // Main loop
     while(!glfwWindowShouldClose(window))
@@ -205,22 +207,8 @@ int main(int argc, char *argv[]) {
 
         MVstack.pop(); // Restore the initial, untouched matrix
 
-//        test.render();
-//        test2.render();
-
-//    for(int i = 0; i < 4; i++)
-//    {
-//        for(int j = 0; j < 4; j++)
-//        {
-//            for(int k = 0; k < 4; k++)
-//            {
-//                testarray[i][j][k].render();
-//            }
-//        }
-//    }
-
-        testchunk.render();
-
+//        testchunk.render();
+        testblock.render();
 
 		// Play nice and deactivate the shader program
 		glUseProgram(0);
