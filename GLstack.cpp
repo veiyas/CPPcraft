@@ -59,6 +59,8 @@
 #include "MatrixStack.hpp"
 #include "Block.h"
 #include "Chunk.h"
+#include "Solid.h"
+#include "Air.h"
 
 /*
  * setupViewport() - set up the OpenGL viewport.
@@ -142,12 +144,6 @@ int main(int argc, char *argv[]) {
     // Intialize the matrix to an identity transformation
     MVstack.init();
 
-	// Create geometry for rendering
-//	Block test{"textures/earth.tga"};
-//    test.translate_vertices(1.0f, 1.0f, 0);
-//    test.print_info();
-    Block test2{"textures/earth.tga"};
-
 	// Create a shader program object from GLSL code in two files
 	the_shader.createShader("vertexshader.glsl", "fragmentshader.glsl");
 
@@ -162,10 +158,8 @@ int main(int argc, char *argv[]) {
 	float y_move = 0;
 	float z_move = 0;
 
-    Chunk testchunk{};
-
-    Block testblock("textures/test_tex2.tga");
-    testblock.prep_block();
+    Block *test_ptr = new Solid();
+    test_ptr->prep_block();
 
     // Main loop
     while(!glfwWindowShouldClose(window))
@@ -207,8 +201,8 @@ int main(int argc, char *argv[]) {
 
         MVstack.pop(); // Restore the initial, untouched matrix
 
-        testchunk.render();
-//        testblock.render();
+        //Place block rendering here
+        test_ptr->render();
 
 		// Play nice and deactivate the shader program
 		glUseProgram(0);

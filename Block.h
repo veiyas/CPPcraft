@@ -17,41 +17,20 @@ const float twothirds = 0.66666666667f;
 class Block
 {
 public:
-    Block()
-        : Block("textures/test_tex.tga") {}
-    Block(const char *tex_name);
-    ~Block();
+    Block() = default;
+    virtual ~Block() = default;
     Block(const Block&) = delete;
     operator=(const Block&) = delete;
 
-    //Render the block, code from TNM046
-    void render();
+    //Pure virtual functions
+    //Render the block, code from TNM046, calls sub class method through dynamic binding
+    virtual void render() = 0;
     //Print info about block
-    void print_info() const;
+    virtual void print_info() const = 0;
     //Translate the cubes vertex coordinates, used to move blocks to correct position in 3D-array
-    void translate_block(const float &x, const float &y, const float &z);
+    virtual void translate_block(const float &x, const float &y, const float &z) = 0;
     //Finalize for rendering
-    void prep_block();
-
-protected:
-
-private:
-    //Data
-    Texture tex;
-    const GLfloat block_size = 1.0f;
-
-    //Methods
-    void set_texture(const char *tex_name);
-
-    //OpenGL magic
-    GLuint vao = 1; // Vertex array object, the main handle for geometry
-    int nverts; // Number of vertices in the vertex array
-    int ntris;  // Number of triangles in the index array (may be zero)
-    GLuint vertexbuffer; // Buffer ID to bind to GL_ARRAY_BUFFER
-    GLuint indexbuffer;  // Buffer ID to bind to GL_ELEMENT_ARRAY_BUFFER
-    GLfloat *vertexarray; // Vertex array on interleaved format: x y z nx ny nz s t
-    GLuint *indexarray;   // Element index array
-
+    virtual void prep_block() = 0;
 };
 
 #endif // BLOCK_H
