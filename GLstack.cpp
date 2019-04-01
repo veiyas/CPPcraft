@@ -204,10 +204,10 @@ int main(int argc, char *argv[]) {
 
         // We use MatrixStack code to produce prototype faster
         MVstack.push();
-            // Camera movement
-            MVstack.translate(0.0f + x_move, 0.0f + y_move, -6.0f + z_move);
+            // Camera movement, rotate local camera position then translate (move) the camera
             MVstack.rotX(rotator.theta);
             MVstack.rotY(rotator.phi);
+            MVstack.translate(x_move, y_move, z_move);
             glUniformMatrix4fv( location_MV, 1, GL_FALSE, MVstack.getCurrentMatrix() );
 
         MVstack.pop(); // Restore the initial, untouched matrix
