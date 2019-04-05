@@ -30,6 +30,7 @@ void Solid::translate_block(const float &x, const float &y, const float &z)
 
 void Solid::set_texture(const char *tex_name)
 {
+    //Försök återanvända samma textur
     tex = Texture(tex_name);
 }
 

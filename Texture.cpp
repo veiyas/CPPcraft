@@ -169,8 +169,10 @@ void Texture::createTexture(const char *filename) {
 	glGenTextures(1, &(this->texID));     // Create The texture ID
     glBindTexture ( GL_TEXTURE_2D , this->texID );
     // Set parameters to determine how the texture is resized
+
+    //texturpill
     glTexParameteri ( GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , GL_LINEAR_MIPMAP_LINEAR );
-    glTexParameteri ( GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_LINEAR );
+    glTexParameteri ( GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , GL_NEAREST );
     // Set parameters to determine how the texture wraps at edges
     glTexParameteri ( GL_TEXTURE_2D , GL_TEXTURE_WRAP_S , GL_REPEAT );
     glTexParameteri ( GL_TEXTURE_2D , GL_TEXTURE_WRAP_T , GL_REPEAT );

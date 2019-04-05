@@ -2,19 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="default" />
-	<File name="TriangleSoup.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="GLstack.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="14404" topLine="426" />
-		</Cursor>
-	</File>
-	<File name="src\Air.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="16" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Texture.hpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1480" topLine="34" />
+			<Cursor1 position="5973" topLine="134" />
 		</Cursor>
 	</File>
 	<File name="tnm061.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -22,24 +12,9 @@
 			<Cursor1 position="8998" topLine="149" />
 		</Cursor>
 	</File>
-	<File name="Chunk.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="MatrixStack.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="272" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="fragmentshader.glsl" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="340" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="tnm061.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3114" topLine="33" />
-		</Cursor>
-	</File>
-	<File name="include\Solid.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="254" topLine="4" />
+			<Cursor1 position="1310" topLine="26" />
 		</Cursor>
 	</File>
 	<File name="vertexshader.glsl" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -47,34 +22,19 @@
 			<Cursor1 position="282" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Chunk.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="136" topLine="0" />
-		</Cursor>
-	</File>
 	<File name="Block.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="58" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="GLstack.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7547" topLine="181" />
-		</Cursor>
-	</File>
-	<File name="MatrixStack.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1310" topLine="26" />
-		</Cursor>
-	</File>
 	<File name="Block.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="548" topLine="0" />
+			<Cursor1 position="395" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="TriangleSoup.hpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Chunk.h" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1600" topLine="17" />
+			<Cursor1 position="619" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Rotator.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -82,19 +42,59 @@
 			<Cursor1 position="1803" topLine="39" />
 		</Cursor>
 	</File>
-	<File name="include\Air.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Texture.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="354" topLine="0" />
+			<Cursor1 position="4342" topLine="146" />
 		</Cursor>
 	</File>
-	<File name="Texture.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Chunk.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2281" topLine="7" />
+			<Cursor1 position="484" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="src\Air.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="16" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="TriangleSoup.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="14404" topLine="426" />
 		</Cursor>
 	</File>
 	<File name="src\Solid.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3589" topLine="62" />
+			<Cursor1 position="675" topLine="16" />
+		</Cursor>
+	</File>
+	<File name="fragmentshader.glsl" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="340" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include\Solid.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="84" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="Texture.hpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1480" topLine="34" />
+		</Cursor>
+	</File>
+	<File name="tnm061.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3114" topLine="33" />
+		</Cursor>
+	</File>
+	<File name="TriangleSoup.hpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1600" topLine="17" />
+		</Cursor>
+	</File>
+	<File name="include\Air.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="330" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

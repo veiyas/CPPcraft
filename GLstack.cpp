@@ -160,9 +160,14 @@ int main(int argc, char *argv[]) {
 	float y_move = 0;
 	float z_move = 0;
 
+	//Pool med texturer
+    //std::pair< "texnamn" , textur>
+
 /********************************************************
                         TEST AREA
 ********************************************************/
+
+
 
     Chunk test;
     test.print_chunk_info();
