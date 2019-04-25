@@ -6,9 +6,8 @@
 class Solid : public Block
 {
 public:
-    Solid(const float &x, const float &y, const float &z)
-        : Solid("textures/grass.tga") {translate_block(x,y,z);}
-    Solid(const char *tex_name);
+    Solid(const float &x, const float &y, const float &z);
+
     ~Solid();
 
     //Render the block, code from TNM046, calls sub class method through dynamic binding
@@ -19,6 +18,8 @@ public:
     void translate_block(const float &x, const float &y, const float &z);
     //Finalize for rendering
     void prep_block();
+    //Load texture from texture pool
+    void load_texture(Texture &the_tex) override;
 
 private:
     //Data

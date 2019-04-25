@@ -63,6 +63,9 @@
 #include "Air.h"
 
 #include <functional>
+#include <vector>
+#include <string>
+#include <map>
 
 /*
  * setupViewport() - set up the OpenGL viewport.
@@ -79,6 +82,7 @@ void setupViewport(GLFWwindow *window, GLfloat *P);
 void create_perspective_matrix(float M[], const float &vfov, const float &aspect, const float &znear, const float &zfar);
 const float move_speed = 0.05;
 void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z);
+std::map<std::string, Texture> create_texture_pool();
 
 /*
  * main(argc, argv) - the standard C entry point for the program
@@ -160,23 +164,22 @@ int main(int argc, char *argv[]) {
 	float y_move = 0;
 	float z_move = 0;
 
-	//Pool med texturer
-    //std::pair< "texnamn" , textur>
-
+	//Texture pool, check function for order
+    auto tex_pool = create_texture_pool();
 /********************************************************
                         TEST AREA
 ********************************************************/
 
+//    Chunk test;
+//    test.print_chunk_info();
+//    test.create_dummy_chunk();
 
+    Block *load_test = new Solid(0,0,-2);
 
-    Chunk test;
-    test.print_chunk_info();
-
-    int gen_test = -256;
-
+    load_test->load_texture(tex_pool["Grass"]);
 /********************************************************
-                        TEST AREA
 ********************************************************/
+
     // Main loop
     while(!glfwWindowShouldClose(window))
     {
@@ -220,10 +223,7 @@ int main(int argc, char *argv[]) {
 /********************************************************
                 RENDERING CODE GOES HERE
 ********************************************************/
-        test.add_object(new Solid(0,0,gen_test));
-        ++gen_test;
-
-        test.render();
+        load_test->render();
 /********************************************************
 
 ********************************************************/
@@ -247,6 +247,16 @@ int main(int argc, char *argv[]) {
     glfwTerminate();
 
     return 0;
+}
+
+std::map<std::string, Texture> create_texture_pool()
+{
+    std::map<std::string, Texture> temp_tex_pool;
+    temp_tex_pool.insert(std::make_pair("Grass", Texture("textures/grass.tga")));
+
+
+
+    return temp_tex_pool;
 }
 
 void create_perspective_matrix(float M[], const float &vfov, const float &aspect, const float &znear, const float &zfar)

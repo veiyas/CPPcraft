@@ -1,10 +1,9 @@
 #include "Solid.h"
 
-Solid::Solid(const char *tex_name)
+Solid::Solid(const float &x, const float &y, const float &z)
 {
-    set_texture(tex_name);
-
     create_block();
+    translate_block(x,y,z);
 }
 
 Solid::~Solid()
@@ -28,17 +27,16 @@ void Solid::translate_block(const float &x, const float &y, const float &z)
     prep_block();
 }
 
-void Solid::set_texture(const char *tex_name)
-{
-    //Försök återanvända samma textur
-    tex = Texture(tex_name);
-}
-
 void Solid::print_info() const
 {
     printf("TriangleSoup information:\n");
     printf("Vertices : %d\n", nverts);
     printf("Triangles: %d\n", ntris);
+}
+
+void Solid::load_texture(Texture &the_tex)
+{
+    tex = the_tex;
 }
 
 void Solid::prep_block()
@@ -85,6 +83,8 @@ void Solid::prep_block()
 
 void Solid::render()
 {
+    if(visible)
+    {
     //Bind texture
     glBindTexture(GL_TEXTURE_2D, tex.texID);
     glBindVertexArray(vao);
@@ -94,6 +94,9 @@ void Solid::render()
 	glBindVertexArray(0);
 	glBindBuffer(0, 0);
 	glBindTexture(0, 0);
+    }
+    else
+        return;
 }
 
 void Solid::create_block()

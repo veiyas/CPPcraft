@@ -19,7 +19,8 @@ public:
     Block(const Block&) = delete;
     operator=(const Block&) = delete;
 
-    //Pure virtual functions
+        //Methods
+    //Pure virtual methods
     //Render the block, code from TNM046, calls sub class method through dynamic binding
     virtual void render() = 0;
     //Print info about block
@@ -28,6 +29,11 @@ public:
     virtual void translate_block(const float &x, const float &y, const float &z) = 0;
     //Finalize for rendering
     virtual void prep_block() = 0;
+    //Load texture from texture pool
+    virtual void load_texture(Texture &the_tex) = 0;
+
+        //Data members
+    bool visible = true;
 };
 
 #endif // BLOCK_H

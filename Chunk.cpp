@@ -13,8 +13,10 @@ void Chunk::add_object(Block* obj)
 {
     the_chunk[num_objects] = obj;
 
-    if(num_objects == LENGTH*WIDTH*HEIGHT)
+    if(num_objects == LENGTH*WIDTH*HEIGHT){
+        delete obj;
         return;
+    }
 
     ++length_step;
 

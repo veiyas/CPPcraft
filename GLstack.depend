@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1551379848 source:c:\users\david\documents\projects\c++craft\glstack.cpp
+1556205156 source:c:\users\david\documents\projects\c++craft\glstack.cpp
 	<cstdio>
 	<cstdlib>
 	<cmath>
@@ -11,8 +11,15 @@
 	"Rotator.hpp"
 	"MatrixStack.hpp"
 	"Block.h"
+	"Chunk.h"
+	"Solid.h"
+	"Air.h"
+	<functional>
+	<vector>
+	<string>
+	<map>
 
-1551285740 c:\users\david\documents\projects\c++craft\glfw\glfw3.h
+1551289340 c:\users\david\documents\projects\c++craft\glfw\glfw3.h
 	<stddef.h>
 	<OpenGL/gl3.h>
 	<OpenGL/gl.h>
@@ -24,7 +31,7 @@
 	<GL/gl.h>
 	<GL/glu.h>
 
-1551285740 c:\users\david\documents\projects\c++craft\gl\glext.h
+1551289340 c:\users\david\documents\projects\c++craft\gl\glext.h
 	<windows.h>
 	<stddef.h>
 	<inttypes.h>
@@ -34,55 +41,55 @@
 	<stdint.h>
 	<inttypes.h>
 
-1551285741 c:\users\david\documents\projects\c++craft\tnm061.hpp
+1551289341 c:\users\david\documents\projects\c++craft\tnm061.hpp
 	<GL/glext.h>
 
-1551285740 c:\users\david\documents\projects\c++craft\shader.hpp
+1551289340 c:\users\david\documents\projects\c++craft\shader.hpp
 	<GLFW/glfw3.h>
 	"tnm061.hpp"
 	<cstdio>
 
-1551285740 c:\users\david\documents\projects\c++craft\texture.hpp
+1551289340 c:\users\david\documents\projects\c++craft\texture.hpp
 	<GLFW/glfw3.h>
 	<cstdio>
 	<cstring>
 	<GL/glext.h>
 	"tnm061.hpp"
 
-1551285741 c:\users\david\documents\projects\c++craft\trianglesoup.hpp
+1551289341 c:\users\david\documents\projects\c++craft\trianglesoup.hpp
 	<GLFW/glfw3.h>
 	<GL/glext.h>
 	"tnm061.hpp"
 
-1551285740 c:\users\david\documents\projects\c++craft\rotator.hpp
+1551289340 c:\users\david\documents\projects\c++craft\rotator.hpp
 	<GLFW/glfw3.h>
 	<cmath>
 
-1551285740 c:\users\david\documents\projects\c++craft\matrixstack.hpp
+1551289340 c:\users\david\documents\projects\c++craft\matrixstack.hpp
 	<cmath>
 	<cstdlib>
 	<cstdio>
 	<GLFW/glfw3.h>
 
-1551285740 source:c:\users\david\documents\projects\c++craft\matrixstack.cpp
+1551289340 source:c:\users\david\documents\projects\c++craft\matrixstack.cpp
 	"MatrixStack.hpp"
 
-1551373463 source:c:\users\david\documents\projects\c++craft\rotator.cpp
+1551377063 source:c:\users\david\documents\projects\c++craft\rotator.cpp
 	"Rotator.hpp"
 
-1551285740 source:c:\users\david\documents\projects\c++craft\shader.cpp
+1551289340 source:c:\users\david\documents\projects\c++craft\shader.cpp
 	"Shader.hpp"
 
-1551376269 source:c:\users\david\documents\projects\c++craft\texture.cpp
+1554505419 source:c:\users\david\documents\projects\c++craft\texture.cpp
 	"Texture.hpp"
 
-1551285741 source:c:\users\david\documents\projects\c++craft\tnm061.cpp
+1551289341 source:c:\users\david\documents\projects\c++craft\tnm061.cpp
 	<stdio.h>
 	<GLFW/glfw3.h>
 	<GL/glext.h>
 	"tnm061.hpp"
 
-1551285741 source:c:\users\david\documents\projects\c++craft\trianglesoup.cpp
+1551289341 source:c:\users\david\documents\projects\c++craft\trianglesoup.cpp
 	<cstdio>
 	<cstdlib>
 	<cmath>
@@ -99,15 +106,15 @@
 	<iostream>
 	<string>
 
-1551380591 source:c:\users\david\documents\projects\c++craft\block.cpp
+1551985392 source:c:\users\david\documents\projects\c++craft\block.cpp
 	"Block.h"
 	<iostream>
 	<string>
 
-1551379706 c:\users\david\documents\projects\c++craft\block.h
+1556203675 c:\users\david\documents\projects\c++craft\block.h
 	<iostream>
 	<string>
-	"../Texture.hpp"
+	"Texture.hpp"
 	<GLFW/glfw3.h>
 	<GL/glext.h>
 	"tnm061.hpp"
@@ -240,4 +247,26 @@
 
 1551903879 c:\users\david\documents\projects\cppcraft\include\solid.h
 	<Block.h>
+
+1556202105 source:c:\users\david\documents\projects\c++craft\chunk.cpp
+	"Chunk.h"
+	"Block.h"
+	"Solid.h"
+	"Air.h"
+	<iostream>
+
+1551985392 c:\users\david\documents\projects\c++craft\chunk.h
+	"Block.h"
+
+1556204039 c:\users\david\documents\projects\c++craft\include\solid.h
+	<Block.h>
+
+1551985392 c:\users\david\documents\projects\c++craft\include\air.h
+	<Block.h>
+
+1551985392 source:c:\users\david\documents\projects\c++craft\src\air.cpp
+	"Air.h"
+
+1556204065 source:c:\users\david\documents\projects\c++craft\src\solid.cpp
+	"Solid.h"
 
