@@ -33,7 +33,10 @@ public:
     virtual void load_texture(Texture &the_tex) = 0;
 
         //Data members
-    bool visible = true;
+    bool visible = false;
+    int x = 0;
+    int y = 0;
+    int z = 0;
 };
 
 #endif // BLOCK_H

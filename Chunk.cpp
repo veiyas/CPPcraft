@@ -4,14 +4,21 @@
 #include "Air.h"
 #include <iostream>
 
-bool Chunk::is_visible()
+void Chunk::set_visibility()
 {
 
 }
 
 void Chunk::add_object(Block* obj)
 {
-    the_chunk[num_objects] = obj;
+    the_chunk[obj->x + HEIGHT*(obj->y + WIDTH * obj->z)] = obj;
+
+    //Visibility checks
+    if(obj->x == 0 || obj->y == 0 || obj->z == 0)
+        obj->visible = true;
+
+    if(obj->x == LENGTH-1 || obj->y == WIDTH-1 || obj->z == HEIGHT-1)
+        obj->visible = true;
 
     if(num_objects == LENGTH*WIDTH*HEIGHT){
         delete obj;
@@ -33,9 +40,13 @@ void Chunk::add_object(Block* obj)
     }
 
     ++num_objects;
-
-    //If you try to add more elements than the max size it crashes
 }
+
+Block * Chunk::access_block(const int &x, const int &y, const int &z)
+{
+    return the_chunk[x + HEIGHT*(y + WIDTH * z)];
+}
+
 void Chunk::print_chunk_info()
 {
     std::cout << "Number of objects in chunk: " << num_objects << std::endl;
@@ -57,6 +68,4 @@ void Chunk::render()
     {
         the_chunk[i]->render();
     }
-
-
 }

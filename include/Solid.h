@@ -6,7 +6,7 @@
 class Solid : public Block
 {
 public:
-    Solid(const float &x, const float &y, const float &z);
+    Solid(const int &_x, const int &_y, const int &_z);
 
     ~Solid();
 

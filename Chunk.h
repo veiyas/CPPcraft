@@ -9,7 +9,7 @@ public:
     ~Chunk() = default;
 
     //Check if the block is surrounded by other block
-    bool is_visible();
+    void set_visibility();
     //Attach an object to this chunk
     void add_object(Block *obj);
     //Render objects in chunk
@@ -19,8 +19,7 @@ public:
     //Print info about chunk
     void print_chunk_info();
     //Access block at a certain position
-    Block & access_block(const int &x, const int &y, const int &z);
-
+    Block * access_block(const int &x, const int &y, const int &z);
     //The blocks, uses dynamic binding, declared as a 1-dim array and modified to 3D space with basic math
     Block **the_chunk;
 

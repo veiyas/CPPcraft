@@ -1,9 +1,14 @@
 #include "Solid.h"
 
-Solid::Solid(const float &x, const float &y, const float &z)
+Solid::Solid(const int &_x, const int &_y, const int &_z)
 {
     create_block();
-    translate_block(x,y,z);
+
+    x = _x;
+    y = _y;
+    z = _z;
+
+    translate_block(_x,_y,_z);
 }
 
 Solid::~Solid()
