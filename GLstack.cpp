@@ -80,7 +80,7 @@
 //Local function declarations
 void setupViewport(GLFWwindow *window, GLfloat *P);
 void create_perspective_matrix(float M[], const float &vfov, const float &aspect, const float &znear, const float &zfar);
-const float move_speed = 0.05;
+const float MOVE_SPEED = 0.005;
 void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z);
 std::map<std::string, Texture> create_texture_pool();
 
@@ -164,19 +164,16 @@ int main(int argc, char *argv[]) {
 	float y_move = 0;
 	float z_move = 0;
 
-	//Texture pool, check function for order
+	//Texture pool
     auto tex_pool = create_texture_pool();
 /********************************************************
                         TEST AREA
 ********************************************************/
 
-//    Chunk test;
-//    test.print_chunk_info();
-//    test.create_dummy_chunk();
+    Chunk test;
+    test.print_chunk_info();
+    test.create_dummy_chunk(tex_pool["Grass"]);
 
-    Block *load_test = new Solid(0,0,-2);
-
-    load_test->load_texture(tex_pool["Grass"]);
 /********************************************************
 ********************************************************/
 
@@ -223,7 +220,8 @@ int main(int argc, char *argv[]) {
 /********************************************************
                 RENDERING CODE GOES HERE
 ********************************************************/
-        load_test->render();
+//        load_test->render();
+        test.render();
 /********************************************************
 
 ********************************************************/
@@ -283,22 +281,22 @@ void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z)
           glfwSetWindowShouldClose(window, GL_TRUE);
     }
     if(glfwGetKey(window, GLFW_KEY_W)) {
-      z += move_speed;
+      z += MOVE_SPEED;
     }
     if(glfwGetKey(window, GLFW_KEY_S)) {
-      z -= move_speed;
+      z -= MOVE_SPEED;
     }
     if(glfwGetKey(window, GLFW_KEY_D)) {
-      x -= move_speed;
+      x -= MOVE_SPEED;
     }
     if(glfwGetKey(window, GLFW_KEY_A)) {
-      x += move_speed;
+      x += MOVE_SPEED;
     }
     if(glfwGetKey(window, GLFW_KEY_SPACE)) {
-      y -= move_speed;
+      y -= MOVE_SPEED;
     }
     if(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)) {
-      y += move_speed;
+      y += MOVE_SPEED;
     }
 }
 

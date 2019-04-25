@@ -15,18 +15,20 @@ public:
     //Render objects in chunk
     void render();
     //Create test chunk
-    void create_dummy_chunk();
+    void create_dummy_chunk(Texture &tex);
     //Print info about chunk
     void print_chunk_info();
+    //Access block at a certain position
+    Block & access_block(const int &x, const int &y, const int &z);
 
     //The blocks, uses dynamic binding, declared as a 1-dim array and modified to 3D space with basic math
     Block **the_chunk;
 
 private:
     //Constants
-    const static int LENGTH = 8;
-    const static int WIDTH =  8;
-    const static int HEIGHT = 8;
+    const static int LENGTH = 4;
+    const static int WIDTH =  4;
+    const static int HEIGHT = 4;
 
     //Counters used for constructing 3D representation of chunk
     int num_objects = 0;

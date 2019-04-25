@@ -41,11 +41,13 @@ void Chunk::print_chunk_info()
     std::cout << "Number of objects in chunk: " << num_objects << std::endl;
 }
 
-void Chunk::create_dummy_chunk()
+void Chunk::create_dummy_chunk(Texture &tex)
 {
     for(size_t i = 0; i < (LENGTH*WIDTH*HEIGHT); i++)
     {
-        add_object(new Solid(length_step, height_step, width_step));
+        Block *temp = new Solid(length_step, height_step, width_step);
+        temp->load_texture(tex);
+        add_object(temp);
     }
 }
 
