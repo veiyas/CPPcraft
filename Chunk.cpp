@@ -8,7 +8,7 @@ Chunk::Chunk()
 {
     //Initialize with nullptrs
     the_chunk = new Block*[LENGTH*WIDTH*HEIGHT]{nullptr};
-    tex = Texture("textures/stone.tga");
+    tex = Texture("textures/sand.tga");
 }
 
 void Chunk::set_visibility()
@@ -35,8 +35,6 @@ void Chunk::add_object()
     {
         delete obj;
     }
-
-
 
     ++length_step;
 

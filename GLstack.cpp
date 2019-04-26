@@ -251,8 +251,8 @@ std::map<std::string, Texture> create_texture_pool()
     std::map<std::string, Texture> temp_tex_pool;
     temp_tex_pool.insert(std::make_pair("Grass", Texture("textures/grass.tga")));
     temp_tex_pool.insert(std::make_pair("Stone", Texture("textures/stone.tga")));
-
-
+    temp_tex_pool.insert(std::make_pair("Dirt", Texture("textures/dirt.tga")));
+    temp_tex_pool.insert(std::make_pair("Sand", Texture("textures/sand.tga")));
 
     return temp_tex_pool;
 }
