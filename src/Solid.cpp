@@ -111,35 +111,35 @@ void Solid::create_block()
     const GLfloat vertex_array_data[] = {
 
          //Back face
-        -block_size, -block_size, -block_size,   0.0f, 0.0f,-1.0f,   0.0f, 0.0f,  // Vertex 0
-         block_size, -block_size, -block_size,   0.0f, 0.0f,-1.0f,   0.5f, 0.0f,  // Vertex 1
-        -block_size,  block_size, -block_size,   0.0f, 0.0f,-1.0f,   0.0f, 0.49f,  // Vertex 2
-         block_size,  block_size, -block_size,   0.0f, 0.0f,-1.0f,   0.5f, 0.49f,  // Vertex 3
+        -block_size, -block_size, -block_size,   0.0f, 0.0f,-1.0f,   0.0f, 1.0f/3.0f,  // Vertex 0
+         block_size, -block_size, -block_size,   0.0f, 0.0f,-1.0f,   0.5f, 1.0f/3.0f,  // Vertex 1
+        -block_size,  block_size, -block_size,   0.0f, 0.0f,-1.0f,   0.0f, 2.0f/3.0f,  // Vertex 2
+         block_size,  block_size, -block_size,   0.0f, 0.0f,-1.0f,   0.5f, 2.0f/3.0f,  // Vertex 3
          //Front face
-        -block_size, -block_size,  block_size,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,  // Vertex 4
-         block_size, -block_size,  block_size,   0.0f, 0.0f, 1.0f,   0.5f, 0.0f,  // Vertex 5
-        -block_size,  block_size,  block_size,   0.0f, 0.0f, 1.0f,   0.0f, 0.5f,  // Vertex 6
-         block_size,  block_size,  block_size,   0.0f, 0.0f, 1.0f,   0.5f, 0.5f,  // Vertex 7
+        -block_size, -block_size,  block_size,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f/3.0f,  // Vertex 4
+         block_size, -block_size,  block_size,   0.0f, 0.0f, 1.0f,   1.0f, 1.0f/3.0f,  // Vertex 5
+        -block_size,  block_size,  block_size,   0.0f, 0.0f, 1.0f,   0.0f, 2.0f/3.0f,  // Vertex 6
+         block_size,  block_size,  block_size,   0.0f, 0.0f, 1.0f,   1.0f, 2.0f/3.0f,  // Vertex 7
          //Right face
-         block_size, -block_size,  block_size,   1.0f, 0.0f, 0.0f,   0.0f, 0.0f,  // Vertex 5 - 8
-         block_size, -block_size, -block_size,   1.0f, 0.0f, 0.0f,   0.5f, 0.0f,  // Vertex 1 - 9
-         block_size,  block_size,  block_size,   1.0f, 0.0f, 0.0f,   0.0f, 0.5f,  // Vertex 7 - 10
-         block_size,  block_size, -block_size,   1.0f, 0.0f, 0.0f,   0.5f, 0.5f,  // Vertex 3 - 11
+         block_size, -block_size,  block_size,   1.0f, 0.0f, 0.0f,   0.0f, 1.0f/3.0f,  // Vertex 5 - 8
+         block_size, -block_size, -block_size,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f/3.0f,  // Vertex 1 - 9
+         block_size,  block_size,  block_size,   1.0f, 0.0f, 0.0f,   0.0f, 2.0f/3.0f,  // Vertex 7 - 10
+         block_size,  block_size, -block_size,   1.0f, 0.0f, 0.0f,   1.0f, 2.0f/3.0f,  // Vertex 3 - 11
          //Left face
-        -block_size, -block_size, -block_size,  -1.0f, 0.0f, 0.0f,   0.0f, 0.0f,  // Vertex 0 - 12
-        -block_size, -block_size,  block_size,  -1.0f, 0.0f, 0.0f,   0.5f, 0.0f,  // Vertex 4 - 13
-        -block_size,  block_size, -block_size,  -1.0f, 0.0f, 0.0f,   0.0f, 0.5f,  // Vertex 2 - 14
-        -block_size,  block_size,  block_size,  -1.0f, 0.0f, 0.0f,   0.5f, 0.5f,  // Vertex 6 - 15
+        -block_size, -block_size, -block_size,  -1.0f, 0.0f, 0.0f,   0.0f, 1.0f/3.0f,  // Vertex 0 - 12
+        -block_size, -block_size,  block_size,  -1.0f, 0.0f, 0.0f,   1.0f, 1.0f/3.0f,  // Vertex 4 - 13
+        -block_size,  block_size, -block_size,  -1.0f, 0.0f, 0.0f,   0.0f, 2.0f/3.0f,  // Vertex 2 - 14
+        -block_size,  block_size,  block_size,  -1.0f, 0.0f, 0.0f,   1.0f, 2.0f/3.0f,  // Vertex 6 - 15
          //Top face
-        -block_size,  block_size,  block_size,   0.0f, 1.0f, 0.0f,   0.0f,  0.5f,    // Vertex 6 - 16
-         block_size,  block_size,  block_size,   0.0f, 1.0f, 0.0f,   0.5f,  0.5f,  // Vertex 7 - 17
+        -block_size,  block_size,  block_size,   0.0f, 1.0f, 0.0f,   0.0f,  2.0f/3.0f,    // Vertex 6 - 16
+         block_size,  block_size,  block_size,   0.0f, 1.0f, 0.0f,   1.0f,  2.0f/3.0f,  // Vertex 7 - 17
         -block_size,  block_size, -block_size,   0.0f, 1.0f, 0.0f,   0.0f,  1.0f,    // Vertex 2 - 18
-         block_size,  block_size, -block_size,   0.0f, 1.0f, 0.0f,   0.5f,  1.0f,  // Vertex 3 - 19
+         block_size,  block_size, -block_size,   0.0f, 1.0f, 0.0f,   1.0f,  1.0f,  // Vertex 3 - 19
          //Bottom face
-        -block_size, -block_size, -block_size,   0.0f,-1.0f, 0.0f,   0.5f,  0.0f, // Vertex 0 - 20
+        -block_size, -block_size, -block_size,   0.0f,-1.0f, 0.0f,   0.0f,  0.0f, // Vertex 0 - 20
          block_size, -block_size, -block_size,   0.0f,-1.0f, 0.0f,   1.0f,  0.0f,    // Vertex 1 - 21
-        -block_size, -block_size,  block_size,   0.0f,-1.0f, 0.0f,   0.5f,  0.5f,  // Vertex 4 - 22
-         block_size, -block_size,  block_size,   0.0f,-1.0f, 0.0f,   1.0f,  0.5f,  // Vertex 5 - 23
+        -block_size, -block_size,  block_size,   0.0f,-1.0f, 0.0f,   0.0f,  1.0f/3.0f,  // Vertex 4 - 22
+         block_size, -block_size,  block_size,   0.0f,-1.0f, 0.0f,   1.0f,  1.0f/3.0f,  // Vertex 5 - 23
     };
     const GLuint index_array_data[] = {
         //Back face
