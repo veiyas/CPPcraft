@@ -5,13 +5,17 @@
 class Chunk
 {
 public:
-    Chunk() {the_chunk = new Block*[LENGTH*WIDTH*HEIGHT];}
-    ~Chunk() = default;
+    Chunk() {the_chunk = new Block*[LENGTH*WIDTH*HEIGHT];
+    for(size_t i = 0; i < LENGTH*WIDTH*HEIGHT; i++)
+        the_chunk[i] = nullptr;
+    tex = Texture("textures/grass.tga");
+    }
+    ~Chunk() {delete [] the_chunk;}
 
     //Check if the block is surrounded by other block
     void set_visibility();
     //Attach an object to this chunk
-    void add_object(Block *obj);
+    void add_object();
     //Render objects in chunk
     void render();
     //Create test chunk
@@ -25,15 +29,18 @@ public:
 
 private:
     //Constants
-    const static int LENGTH = 4;
-    const static int WIDTH =  4;
-    const static int HEIGHT = 4;
+    const static int LENGTH = 16;
+    const static int WIDTH =  16;
+    const static int HEIGHT = 16;
 
     //Counters used for constructing 3D representation of chunk
     int num_objects = 0;
     int length_step = 0;
     int width_step = 0;
     int height_step = 0;
+
+    //Temp texture
+    Texture tex;
 };
 
 #endif
