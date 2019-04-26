@@ -4,6 +4,13 @@
 #include "Air.h"
 #include <iostream>
 
+Chunk::Chunk()
+{
+    //Initialize with nullptrs
+    the_chunk = new Block*[LENGTH*WIDTH*HEIGHT]{nullptr};
+    tex = Texture("textures/stone.tga");
+}
+
 void Chunk::set_visibility()
 {
 
@@ -17,18 +24,19 @@ void Chunk::add_object()
     }
 
     Block *obj = new Solid(length_step, height_step, width_step);
-    obj->load_texture(tex);
 
-    //Visibility checks
+    //Visibility checks for cube only
     if(obj->x == 0 || obj->y == 0 || obj->z == 0 || obj->x == LENGTH-1 || obj->y == WIDTH-1 || obj->z == HEIGHT-1)
-        obj->visible = true;
+    {
+        the_chunk[(obj->x * WIDTH * HEIGHT) + (obj->y * WIDTH) + obj->z] = obj;
+        obj->load_texture(tex);
+    }
     else
     {
-        if(obj->y - 1 == 0 && obj->x > 0 && obj->x < LENGTH && obj->z > 0 && obj->z < WIDTH)
-            obj->visible = false;
+        delete obj;
     }
 
-    the_chunk[(obj->x * WIDTH * HEIGHT) + (obj->y * WIDTH) + obj->z] = obj;
+
 
     ++length_step;
 
@@ -45,7 +53,6 @@ void Chunk::add_object()
     }
 
     ++num_objects;
-    std::cout << num_objects << "\n";
 }
 
 Block * Chunk::access_block(const int &x, const int &y, const int &z)
@@ -66,17 +73,8 @@ void Chunk::render()
 
 void Chunk::print_chunk_info()
 {
-    std::cout << "Number of objects in chunk: " << num_objects << std::endl;
-}
+    std::cout << "Number of objects in chunk: " << num_objects << ", size: " << sizeof(**the_chunk) << "\n";
 
-void Chunk::create_dummy_chunk(Texture &tex)
-{
-    for(size_t i = 0; i < (LENGTH*WIDTH*HEIGHT); i++)
-    {
-        Block *temp = new Solid(length_step, height_step, width_step);
-        temp->load_texture(tex);
-//        add_object(temp);
-    }
 }
 
 

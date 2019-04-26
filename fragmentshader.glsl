@@ -15,5 +15,5 @@ void main() {
      //Only ambient light for now
      color = texcolor;
 
-     //color = texcolor * diffuse;
+//     color = texcolor * diffuse;
 }

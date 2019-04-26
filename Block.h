@@ -19,7 +19,7 @@ public:
     Block(const Block&) = delete;
     operator=(const Block&) = delete;
 
-        //Methods
+//Methods
     //Pure virtual methods
     //Render the block, code from TNM046, calls sub class method through dynamic binding
     virtual void render() = 0;
@@ -32,8 +32,8 @@ public:
     //Load texture from texture pool
     virtual void load_texture(Texture &the_tex) = 0;
 
-        //Data members
-    bool visible = false;
+//Data members
+    bool visible = true;
     int x = 0;
     int y = 0;
     int z = 0;

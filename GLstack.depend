@@ -270,3 +270,267 @@
 1556225146 source:c:\users\david\documents\projects\c++craft\src\solid.cpp
 	"Solid.h"
 
+1556282249 source:h:\cppcraft\block.cpp
+	"Block.h"
+	<iostream>
+	<string>
+
+1556282249 h:\cppcraft\block.h
+	<iostream>
+	<string>
+	"Texture.hpp"
+	<GLFW/glfw3.h>
+	<GL/glext.h>
+	"tnm061.hpp"
+
+1556282249 h:\cppcraft\texture.hpp
+	<GLFW/glfw3.h>
+	<cstdio>
+	<cstring>
+	<GL/glext.h>
+	"tnm061.hpp"
+
+1556282249 h:\cppcraft\glfw\glfw3.h
+	<stddef.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/glcorearb.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<GLES3/gl3.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1556282249 h:\cppcraft\gl\glext.h
+	<windows.h>
+	<stddef.h>
+	<inttypes.h>
+	<inttypes.h>
+	<inttypes.h>
+	<stdint.h>
+	<stdint.h>
+	<inttypes.h>
+
+1556282250 h:\cppcraft\tnm061.hpp
+	<GL/glext.h>
+
+1556282596 source:h:\cppcraft\chunk.cpp
+	"Chunk.h"
+	"Block.h"
+	"Solid.h"
+	"Air.h"
+	<iostream>
+
+1556282666 h:\cppcraft\chunk.h
+	"Block.h"
+
+1556282249 h:\cppcraft\include\solid.h
+	<Block.h>
+
+1556282249 h:\cppcraft\include\air.h
+	<Block.h>
+
+1556282249 source:h:\cppcraft\glstack.cpp
+	<cstdio>
+	<cstdlib>
+	<cmath>
+	<GLFW/glfw3.h>
+	<GL/glext.h>
+	"tnm061.hpp"
+	"Shader.hpp"
+	"TriangleSoup.hpp"
+	"Rotator.hpp"
+	"MatrixStack.hpp"
+	"Block.h"
+	"Chunk.h"
+	"Solid.h"
+	"Air.h"
+	<functional>
+	<vector>
+	<string>
+	<map>
+
+1556282249 h:\cppcraft\shader.hpp
+	<GLFW/glfw3.h>
+	"tnm061.hpp"
+	<cstdio>
+
+1556282249 h:\cppcraft\trianglesoup.hpp
+	<GLFW/glfw3.h>
+	<GL/glext.h>
+	"tnm061.hpp"
+
+1556282249 h:\cppcraft\rotator.hpp
+	<GLFW/glfw3.h>
+	<cmath>
+
+1556282249 h:\cppcraft\matrixstack.hpp
+	<cmath>
+	<cstdlib>
+	<cstdio>
+	<GLFW/glfw3.h>
+
+1556282249 source:h:\cppcraft\matrixstack.cpp
+	"MatrixStack.hpp"
+
+1556282249 source:h:\cppcraft\rotator.cpp
+	"Rotator.hpp"
+
+1556282249 source:h:\cppcraft\shader.cpp
+	"Shader.hpp"
+
+1556282249 source:h:\cppcraft\src\air.cpp
+	"Air.h"
+
+1556282249 source:h:\cppcraft\src\solid.cpp
+	"Solid.h"
+
+1556282249 source:h:\cppcraft\texture.cpp
+	"Texture.hpp"
+
+1556282249 source:h:\cppcraft\trianglesoup.cpp
+	<cstdio>
+	<cstdlib>
+	<cmath>
+	<cstring>
+	"TriangleSoup.hpp"
+
+1556282250 source:h:\cppcraft\tnm061.cpp
+	<stdio.h>
+	<GLFW/glfw3.h>
+	<GL/glext.h>
+	"tnm061.hpp"
+
+1556282249 source:c:\users\davka030\cppcraft\block.cpp
+	"Block.h"
+	<iostream>
+	<string>
+
+1556288701 c:\users\davka030\cppcraft\block.h
+	<iostream>
+	<string>
+	"Texture.hpp"
+	<GLFW/glfw3.h>
+	<GL/glext.h>
+	"tnm061.hpp"
+
+1556282249 c:\users\davka030\cppcraft\texture.hpp
+	<GLFW/glfw3.h>
+	<cstdio>
+	<cstring>
+	<GL/glext.h>
+	"tnm061.hpp"
+
+1556282249 c:\users\davka030\cppcraft\glfw\glfw3.h
+	<stddef.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/glcorearb.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<GLES3/gl3.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1556282249 c:\users\davka030\cppcraft\gl\glext.h
+	<windows.h>
+	<stddef.h>
+	<inttypes.h>
+	<inttypes.h>
+	<inttypes.h>
+	<stdint.h>
+	<stdint.h>
+	<inttypes.h>
+
+1556282250 c:\users\davka030\cppcraft\tnm061.hpp
+	<GL/glext.h>
+
+1556293187 source:c:\users\davka030\cppcraft\chunk.cpp
+	"Chunk.h"
+	"Block.h"
+	"Solid.h"
+	"Air.h"
+	<iostream>
+
+1556293204 c:\users\davka030\cppcraft\chunk.h
+	"Block.h"
+
+1556282249 c:\users\davka030\cppcraft\include\solid.h
+	<Block.h>
+
+1556292620 c:\users\davka030\cppcraft\include\air.h
+	<Block.h>
+
+1556292993 source:c:\users\davka030\cppcraft\glstack.cpp
+	<cstdio>
+	<cstdlib>
+	<cmath>
+	<GLFW/glfw3.h>
+	<GL/glext.h>
+	"tnm061.hpp"
+	"Shader.hpp"
+	"TriangleSoup.hpp"
+	"Rotator.hpp"
+	"MatrixStack.hpp"
+	"Block.h"
+	"Chunk.h"
+	"Solid.h"
+	"Air.h"
+	<functional>
+	<vector>
+	<string>
+	<map>
+
+1556282249 c:\users\davka030\cppcraft\shader.hpp
+	<GLFW/glfw3.h>
+	"tnm061.hpp"
+	<cstdio>
+
+1556282249 c:\users\davka030\cppcraft\trianglesoup.hpp
+	<GLFW/glfw3.h>
+	<GL/glext.h>
+	"tnm061.hpp"
+
+1556282249 c:\users\davka030\cppcraft\rotator.hpp
+	<GLFW/glfw3.h>
+	<cmath>
+
+1556282249 c:\users\davka030\cppcraft\matrixstack.hpp
+	<cmath>
+	<cstdlib>
+	<cstdio>
+	<GLFW/glfw3.h>
+
+1556282249 source:c:\users\davka030\cppcraft\matrixstack.cpp
+	"MatrixStack.hpp"
+
+1556282249 source:c:\users\davka030\cppcraft\rotator.cpp
+	"Rotator.hpp"
+
+1556282249 source:c:\users\davka030\cppcraft\shader.cpp
+	"Shader.hpp"
+
+1556282249 source:c:\users\davka030\cppcraft\src\air.cpp
+	"Air.h"
+
+1556290714 source:c:\users\davka030\cppcraft\src\solid.cpp
+	"Solid.h"
+
+1556290413 source:c:\users\davka030\cppcraft\texture.cpp
+	"Texture.hpp"
+
+1556282250 source:c:\users\davka030\cppcraft\tnm061.cpp
+	<stdio.h>
+	<GLFW/glfw3.h>
+	<GL/glext.h>
+	"tnm061.hpp"
+
+1556282249 source:c:\users\davka030\cppcraft\trianglesoup.cpp
+	<cstdio>
+	<cstdlib>
+	<cmath>
+	<cstring>
+	"TriangleSoup.hpp"
+

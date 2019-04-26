@@ -80,7 +80,7 @@
 //Local function declarations
 void setupViewport(GLFWwindow *window, GLfloat *P);
 void create_perspective_matrix(float M[], const float &vfov, const float &aspect, const float &znear, const float &zfar);
-const float MOVE_SPEED = 0.005;
+const float MOVE_SPEED = 0.05;
 void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z);
 std::map<std::string, Texture> create_texture_pool();
 
@@ -172,7 +172,6 @@ int main(int argc, char *argv[]) {
 
     Chunk test;
     test.print_chunk_info();
-    test.create_dummy_chunk(tex_pool["Grass"]);
 
 /********************************************************
 ********************************************************/
@@ -212,7 +211,7 @@ int main(int argc, char *argv[]) {
             // Camera movement, rotate local camera position then translate (move) the camera
             MVstack.rotX(rotator.theta);
             MVstack.rotY(rotator.phi);
-            MVstack.translate(x_move, y_move, z_move);
+            MVstack.translate(x_move - 8, y_move - 8, z_move - 50);
             glUniformMatrix4fv( location_MV, 1, GL_FALSE, MVstack.getCurrentMatrix() );
 
         MVstack.pop(); // Restore the initial, untouched matrix
@@ -220,7 +219,7 @@ int main(int argc, char *argv[]) {
 /********************************************************
                 RENDERING CODE GOES HERE
 ********************************************************/
-//        load_test->render();
+        test.add_object();
         test.render();
 /********************************************************
 
@@ -251,6 +250,7 @@ std::map<std::string, Texture> create_texture_pool()
 {
     std::map<std::string, Texture> temp_tex_pool;
     temp_tex_pool.insert(std::make_pair("Grass", Texture("textures/grass.tga")));
+    temp_tex_pool.insert(std::make_pair("Stone", Texture("textures/stone.tga")));
 
 
 
