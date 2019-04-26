@@ -17,6 +17,7 @@ public:
     void print_info() const override {return;};
     void translate_block(const float &x, const float &y, const float &z) {return;};
     void prep_block() {return;};
+    void load_texture(Texture &the_tex){return;}
 };
 
 #endif // AIR_H

@@ -5,11 +5,7 @@
 class Chunk
 {
 public:
-    Chunk() {the_chunk = new Block*[LENGTH*WIDTH*HEIGHT];
-    for(size_t i = 0; i < LENGTH*WIDTH*HEIGHT; i++)
-        the_chunk[i] = nullptr;
-    tex = Texture("textures/grass.tga");
-    }
+    Chunk();
     ~Chunk() {delete [] the_chunk;}
 
     //Check if the block is surrounded by other block
@@ -18,8 +14,6 @@ public:
     void add_object();
     //Render objects in chunk
     void render();
-    //Create test chunk
-    void create_dummy_chunk(Texture &tex);
     //Print info about chunk
     void print_chunk_info();
     //Access block at a certain position
