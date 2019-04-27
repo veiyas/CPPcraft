@@ -37,6 +37,8 @@
 		<Unit filename="GLstack.cpp" />
 		<Unit filename="MatrixStack.cpp" />
 		<Unit filename="MatrixStack.hpp" />
+		<Unit filename="PerlinNoise.cpp" />
+		<Unit filename="PerlinNoise.hpp" />
 		<Unit filename="Rotator.cpp" />
 		<Unit filename="Rotator.hpp" />
 		<Unit filename="Shader.cpp" />

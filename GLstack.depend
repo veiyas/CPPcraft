@@ -119,12 +119,12 @@
 	<GL/glext.h>
 	"tnm061.hpp"
 
-1551890558 source:c:\users\david\documents\projects\cppcraft\block.cpp
+1556281271 source:c:\users\david\documents\projects\cppcraft\block.cpp
 	"Block.h"
 	<iostream>
 	<string>
 
-1551912800 c:\users\david\documents\projects\cppcraft\block.h
+1556293574 c:\users\david\documents\projects\cppcraft\block.h
 	<iostream>
 	<string>
 	"Texture.hpp"
@@ -132,14 +132,14 @@
 	<GL/glext.h>
 	"tnm061.hpp"
 
-1551449866 c:\users\david\documents\projects\cppcraft\texture.hpp
+1556281271 c:\users\david\documents\projects\cppcraft\texture.hpp
 	<GLFW/glfw3.h>
 	<cstdio>
 	<cstring>
 	<GL/glext.h>
 	"tnm061.hpp"
 
-1551449866 c:\users\david\documents\projects\cppcraft\glfw\glfw3.h
+1556281271 c:\users\david\documents\projects\cppcraft\glfw\glfw3.h
 	<stddef.h>
 	<OpenGL/gl3.h>
 	<OpenGL/gl.h>
@@ -151,7 +151,7 @@
 	<GL/gl.h>
 	<GL/glu.h>
 
-1551449866 c:\users\david\documents\projects\cppcraft\gl\glext.h
+1556281271 c:\users\david\documents\projects\cppcraft\gl\glext.h
 	<windows.h>
 	<stddef.h>
 	<inttypes.h>
@@ -161,10 +161,10 @@
 	<stdint.h>
 	<inttypes.h>
 
-1551449867 c:\users\david\documents\projects\cppcraft\tnm061.hpp
+1556281271 c:\users\david\documents\projects\cppcraft\tnm061.hpp
 	<GL/glext.h>
 
-1554113611 source:c:\users\david\documents\projects\cppcraft\glstack.cpp
+1556293574 source:c:\users\david\documents\projects\cppcraft\glstack.cpp
 	<cstdio>
 	<cstdlib>
 	<cmath>
@@ -180,72 +180,75 @@
 	"Solid.h"
 	"Air.h"
 	<functional>
+	<vector>
+	<string>
+	<map>
 
-1551449866 c:\users\david\documents\projects\cppcraft\shader.hpp
+1556281271 c:\users\david\documents\projects\cppcraft\shader.hpp
 	<GLFW/glfw3.h>
 	"tnm061.hpp"
 	<cstdio>
 
-1551449866 c:\users\david\documents\projects\cppcraft\trianglesoup.hpp
+1556281271 c:\users\david\documents\projects\cppcraft\trianglesoup.hpp
 	<GLFW/glfw3.h>
 	<GL/glext.h>
 	"tnm061.hpp"
 
-1551449866 c:\users\david\documents\projects\cppcraft\rotator.hpp
+1556281271 c:\users\david\documents\projects\cppcraft\rotator.hpp
 	<GLFW/glfw3.h>
 	<cmath>
 
-1551449866 c:\users\david\documents\projects\cppcraft\matrixstack.hpp
+1556281271 c:\users\david\documents\projects\cppcraft\matrixstack.hpp
 	<cmath>
 	<cstdlib>
 	<cstdio>
 	<GLFW/glfw3.h>
 
-1551449866 source:c:\users\david\documents\projects\cppcraft\matrixstack.cpp
+1556281271 source:c:\users\david\documents\projects\cppcraft\matrixstack.cpp
 	"MatrixStack.hpp"
 
-1551449866 source:c:\users\david\documents\projects\cppcraft\rotator.cpp
+1556281271 source:c:\users\david\documents\projects\cppcraft\rotator.cpp
 	"Rotator.hpp"
 
-1551449866 source:c:\users\david\documents\projects\cppcraft\shader.cpp
+1556281271 source:c:\users\david\documents\projects\cppcraft\shader.cpp
 	"Shader.hpp"
 
-1551872004 source:c:\users\david\documents\projects\cppcraft\texture.cpp
+1556281271 source:c:\users\david\documents\projects\cppcraft\texture.cpp
 	"Texture.hpp"
 
-1551449866 source:c:\users\david\documents\projects\cppcraft\trianglesoup.cpp
+1556281271 source:c:\users\david\documents\projects\cppcraft\trianglesoup.cpp
 	<cstdio>
 	<cstdlib>
 	<cmath>
 	<cstring>
 	"TriangleSoup.hpp"
 
-1551449867 source:c:\users\david\documents\projects\cppcraft\tnm061.cpp
+1556281271 source:c:\users\david\documents\projects\cppcraft\tnm061.cpp
 	<stdio.h>
 	<GLFW/glfw3.h>
 	<GL/glext.h>
 	"tnm061.hpp"
 
-1551913431 source:c:\users\david\documents\projects\cppcraft\chunk.cpp
+1556293574 source:c:\users\david\documents\projects\cppcraft\chunk.cpp
 	"Chunk.h"
 	"Block.h"
 	"Solid.h"
 	"Air.h"
 	<iostream>
 
-1554454459 c:\users\david\documents\projects\cppcraft\chunk.h
+1556293574 c:\users\david\documents\projects\cppcraft\chunk.h
 	"Block.h"
 
-1551889677 source:c:\users\david\documents\projects\cppcraft\src\air.cpp
+1556281271 source:c:\users\david\documents\projects\cppcraft\src\air.cpp
 	"Air.h"
 
-1551891632 c:\users\david\documents\projects\cppcraft\include\air.h
+1556293574 c:\users\david\documents\projects\cppcraft\include\air.h
 	<Block.h>
 
-1551904855 source:c:\users\david\documents\projects\cppcraft\src\solid.cpp
+1556293574 source:c:\users\david\documents\projects\cppcraft\src\solid.cpp
 	"Solid.h"
 
-1551903879 c:\users\david\documents\projects\cppcraft\include\solid.h
+1556281271 c:\users\david\documents\projects\cppcraft\include\solid.h
 	<Block.h>
 
 1556225403 source:c:\users\david\documents\projects\c++craft\chunk.cpp
