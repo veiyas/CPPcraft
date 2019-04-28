@@ -25,8 +25,8 @@ public:
 
 private:
     //Constants
-    const static int LENGTH = 32;
-    const static int WIDTH =  32;
+    const static int LENGTH = 16;
+    const static int WIDTH =  16;
     const static int HEIGHT = 8;
 
     //Counters used for constructing 3D representation of chunk
@@ -35,9 +35,10 @@ private:
     int width_step = 0;
     int height_step = 0;
 
-    //Temp texture
-    Texture tex;
+    //Texture
     TexturePool the_pool;
+
+    //Perlin noise things
     const double horizontal_scale = 0.10;
     const double vertical_scale = 0.10;
     PerlinNoise perlin = PerlinNoise{};

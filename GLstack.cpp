@@ -119,7 +119,7 @@ int main(int argc, char *argv[]) {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
     // Open a square window (aspect 1:1) to fill half the screen height
-    window = glfwCreateWindow(vidmode->height/2, vidmode->height/2, "GLprimer", nullptr, nullptr);
+    window = glfwCreateWindow(vidmode->height/1.2, vidmode->height/1.2, "GLprimer", nullptr, nullptr);
     if (!window)
     {
         glfwTerminate(); // No window was opened, so we can't continue in any useful way

@@ -3,12 +3,12 @@
 #include "Solid.h"
 #include "Air.h"
 #include <iostream>
+#include <vector>
 
 Chunk::Chunk()
 {
     //Initialize with nullptrs
     the_chunk = new Block*[LENGTH*WIDTH*HEIGHT]{nullptr};
-    tex = Texture("textures/grass.tga");
     the_pool = TexturePool();
 }
 
@@ -32,20 +32,26 @@ void Chunk::add_object()
         obj->load_texture(the_pool("Grass"));
         the_chunk[(obj->x * WIDTH * HEIGHT) + (obj->y * WIDTH) + obj->z] = obj;
 
-        if(obj->x > 2 && obj->y > 2 && obj->z > 2 && obj->x < 11 && obj->y < 11 && obj->z < 11)
+        if(obj->y > 1 && obj->x > 1 && obj->z > 1 && obj-> y < HEIGHT-1 && obj->x < LENGTH-1 && obj->z << WIDTH-1)
         {
-            Block *block_eval = access_block(obj->x, obj->y-1, obj->z-1);
-            Block *block_below = access_block(obj->x, obj->y-1, obj->z);
-            Block *block_back = access_block(obj->x-1, obj->y , obj->z);
-            Block *block_back_left = access_block(obj->x-1, obj->y-1 , obj->z-1);
+            //Names are in relation to the block being evaluated
+            Block *above = access_block(obj->x-1, obj->y, obj->z-1);
+            Block *below = access_block(obj->x-1, obj->y-2, obj->z-1);
+            Block *left = access_block(obj->x-2, obj->y-1, obj->z);
+            Block *right = access_block(obj->x, obj->y-1, obj->z);
+            Block *behind = access_block(obj->x-1, obj->y-1, obj->z-1);
+            Block *front_ = access_block(obj->x-1, obj->y-1, obj->z+1);
 
-            if(block_below && block_back && block_back_left && block_eval)
-                block_eval->visible = false;
+            if(above && below && left && right && behind && front_)
+            {
+                Block *back_below = access_block(obj->x-1, obj->y-1, obj->z);
 
+                if(back_below)
+                {
+                    back_below->visible = false;
+                }
+            }
         }
-
-
-
     }
 
     ++length_step;
