@@ -112,9 +112,9 @@ void Solid::create_block()
 
          //Back face
         -block_size, -block_size, -block_size,   0.0f, 0.0f,-1.0f,   0.0f, 1.0f/3.0f,  // Vertex 0
-         block_size, -block_size, -block_size,   0.0f, 0.0f,-1.0f,   0.5f, 1.0f/3.0f,  // Vertex 1
+         block_size, -block_size, -block_size,   0.0f, 0.0f,-1.0f,   1.0f, 1.0f/3.0f,  // Vertex 1
         -block_size,  block_size, -block_size,   0.0f, 0.0f,-1.0f,   0.0f, 2.0f/3.0f,  // Vertex 2
-         block_size,  block_size, -block_size,   0.0f, 0.0f,-1.0f,   0.5f, 2.0f/3.0f,  // Vertex 3
+         block_size,  block_size, -block_size,   0.0f, 0.0f,-1.0f,   1.0f, 2.0f/3.0f,  // Vertex 3
          //Front face
         -block_size, -block_size,  block_size,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f/3.0f,  // Vertex 4
          block_size, -block_size,  block_size,   0.0f, 0.0f, 1.0f,   1.0f, 1.0f/3.0f,  // Vertex 5

@@ -61,6 +61,7 @@
 #include "Chunk.h"
 #include "Solid.h"
 #include "Air.h"
+#include "PerlinNoise.hpp"
 
 #include <functional>
 #include <vector>
@@ -163,9 +164,6 @@ int main(int argc, char *argv[]) {
 	float x_move = 0;
 	float y_move = 0;
 	float z_move = 0;
-
-	//Texture pool
-    auto tex_pool = create_texture_pool();
 /********************************************************
                         TEST AREA
 ********************************************************/
@@ -222,8 +220,6 @@ int main(int argc, char *argv[]) {
         test.add_object();
         test.render();
 
-
-
 /********************************************************
 
 ********************************************************/
@@ -247,17 +243,6 @@ int main(int argc, char *argv[]) {
     glfwTerminate();
 
     return 0;
-}
-
-std::map<std::string, Texture> create_texture_pool()
-{
-    std::map<std::string, Texture> temp_tex_pool;
-    temp_tex_pool.insert(std::make_pair("Grass", Texture("textures/grass.tga")));
-    temp_tex_pool.insert(std::make_pair("Stone", Texture("textures/stone.tga")));
-    temp_tex_pool.insert(std::make_pair("Dirt", Texture("textures/dirt.tga")));
-    temp_tex_pool.insert(std::make_pair("Sand", Texture("textures/sand.tga")));
-
-    return temp_tex_pool;
 }
 
 void create_perspective_matrix(float M[], const float &vfov, const float &aspect, const float &znear, const float &zfar)

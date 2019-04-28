@@ -13,7 +13,6 @@ out vec2 st;
 
 void main(){
  gl_Position = (P * MV) * vec4(Position, 1.0);
-//gl_Position = vec4(Position, 1.0);
-  interpolatedNormal = mat3(MV) * Normal;
+  interpolatedNormal = mat3(MV) * Normal * time;
   st = TexCoord;
 }

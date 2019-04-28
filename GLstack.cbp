@@ -45,6 +45,7 @@
 		<Unit filename="Shader.hpp" />
 		<Unit filename="Texture.cpp" />
 		<Unit filename="Texture.hpp" />
+		<Unit filename="TexturePool.hpp" />
 		<Unit filename="TriangleSoup.cpp" />
 		<Unit filename="TriangleSoup.hpp" />
 		<Unit filename="fragmentshader.glsl" />
