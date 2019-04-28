@@ -168,8 +168,11 @@ int main(int argc, char *argv[]) {
                         TEST AREA
 ********************************************************/
 
-    Chunk test;
-    test.print_chunk_info();
+    Chunk test1{0,0,0};
+//    Chunk test2{1,0,0};
+//    Chunk test3{-1,0,0};
+//    Chunk test4{0,0,1};
+//    Chunk test5{0,0,-1};
 
 /********************************************************
 ********************************************************/
@@ -217,8 +220,17 @@ int main(int argc, char *argv[]) {
 /********************************************************
                 RENDERING CODE GOES HERE
 ********************************************************/
-        test.add_object();
-        test.render();
+        test1.add_object();
+        test1.render();
+//        test2.add_object();
+//        test2.render();
+//        test3.add_object();
+//        test3.render();
+//        test4.add_object();
+//        test4.render();
+//        test5.add_object();
+//        test5.render();
+
 
 /********************************************************
 
