@@ -59,7 +59,9 @@
 		<Extensions>
 			<code_completion />
 			<envvars />
-			<debugger />
+			<debugger>
+				<search_path add="C:\Users\davka030\cppcraft\" />
+			</debugger>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

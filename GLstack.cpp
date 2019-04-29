@@ -81,7 +81,7 @@
 //Local function declarations
 void setupViewport(GLFWwindow *window, GLfloat *P);
 void create_perspective_matrix(float M[], const float &vfov, const float &aspect, const float &znear, const float &zfar);
-const float MOVE_SPEED = 0.05;
+const float MOVE_SPEED = 0.5;
 void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z);
 std::map<std::string, Texture> create_texture_pool();
 
@@ -168,11 +168,23 @@ int main(int argc, char *argv[]) {
                         TEST AREA
 ********************************************************/
 
-    Chunk test1{0,0,0};
+//    Chunk test1{0,0,0};
 //    Chunk test2{1,0,0};
-//    Chunk test3{-1,0,0};
-//    Chunk test4{0,0,1};
+//    Chunk test3{0,0,1};
+//    Chunk test4{1,0,1};
 //    Chunk test5{0,0,-1};
+
+    std::vector<Chunk*> world;
+
+    for(size_t i = 0; i < 4; i++)
+    {
+        for(size_t j = 0; j < 4; j++)
+        {
+            world.push_back(new Chunk(i,0,j));
+        }
+    }
+
+    std::cout << world.size();
 
 /********************************************************
 ********************************************************/
@@ -220,16 +232,13 @@ int main(int argc, char *argv[]) {
 /********************************************************
                 RENDERING CODE GOES HERE
 ********************************************************/
-        test1.add_object();
-        test1.render();
-//        test2.add_object();
-//        test2.render();
-//        test3.add_object();
-//        test3.render();
-//        test4.add_object();
-//        test4.render();
-//        test5.add_object();
-//        test5.render();
+
+
+        for(size_t i = 0; i < world.size(); i++)
+        {
+            world[i]->add_object();
+            world[i]->render();
+        }
 
 
 /********************************************************

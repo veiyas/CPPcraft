@@ -90,15 +90,15 @@ void Solid::render()
 {
     if(visible)
     {
-    //Bind texture
-    glBindTexture(GL_TEXTURE_2D, tex.texID);
-    glBindVertexArray(vao);
+        //Bind texture
+        glBindTexture(GL_TEXTURE_2D, tex.texID);
+        glBindVertexArray(vao);
 
-    //Render
-	glDrawElements(GL_TRIANGLES, 3 * ntris, GL_UNSIGNED_INT, nullptr);
-	glBindVertexArray(0);
-	glBindBuffer(0, 0);
-	glBindTexture(0, 0);
+        //Render
+        glDrawElements(GL_TRIANGLES, 3 * ntris, GL_UNSIGNED_INT, nullptr);
+        glBindVertexArray(0);
+        glBindBuffer(0, 0);
+        glBindTexture(0, 0);
     }
     else
         return;

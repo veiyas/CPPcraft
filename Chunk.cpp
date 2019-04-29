@@ -13,9 +13,29 @@ Chunk::Chunk(const int pos_x, const int pos_y, const int pos_z)
     the_pool = TexturePool();
 }
 
-void Chunk::set_visibility()
+void Chunk::set_visibility(Block *obj)
 {
+    //CULLING
+    Block *eval_block = access_block((obj->x-1) - x_offset, (obj->y-1) - y_offset, obj->z - z_offset);
 
+    if(eval_block && obj->x - x_offset < LENGTH && obj->y - y_offset < HEIGHT && obj->z - z_offset < WIDTH)
+    {
+       if(obj->x > x_offset && obj->y > y_offset && obj->z > z_offset)
+        {
+            //Names are in relation to the block being evaluated
+            Block *above = access_block( (obj->x-1) - x_offset, (obj->y)   - y_offset, (obj->z)   - z_offset);
+            Block *below = access_block( (obj->x-1) - x_offset, (obj->y-2) - y_offset, (obj->z)   - z_offset);
+            Block *left = access_block(  (obj->x-2) - x_offset, (obj->y-1) - y_offset, (obj->z)   - z_offset);
+            Block *right = access_block( (obj->x)   - x_offset, (obj->y-1) - y_offset, (obj->z)   - z_offset);
+            Block *behind = access_block((obj->x-1) - x_offset, (obj->y-1) - y_offset, (obj->z-1) - z_offset);
+            Block *front_ = access_block((obj->x-1) - x_offset, (obj->y-1) - y_offset, (obj->z+1) - z_offset);
+
+            if(above && below && left && right && behind && front_)
+            {
+                eval_block->visible = false;
+            }
+        }
+    }
 }
 
 void Chunk::add_object()
@@ -28,40 +48,28 @@ void Chunk::add_object()
     temp_perlin -= 0.05;
 
     //Create new block with perlin sample and texturize
-    if(temp_perlin > -0.4) {
+    if(temp_perlin > PERLIN_LIMIT) {
         Block *obj = new Solid(length_step + x_offset, height_step + y_offset, width_step + z_offset);
 
         //Rudimentary texture selector
         if(height_step > 1 && height_step < 28)
             obj->load_texture(the_pool("Grass"));
         else if(height_step >= 28)
-            obj->load_texture(the_pool("Stone"));
+            obj->load_texture(the_pool("Grass"));
         else
-            obj->load_texture(the_pool("Sand"));
+            obj->load_texture(the_pool("Grass"));
 
         //Attach block to chunk
-        the_chunk[((obj->x-x_offset) * WIDTH * HEIGHT) + ((obj->y-y_offset) * WIDTH) + (obj->z-z_offset)] = obj;
+        the_chunk[((obj->x-x_offset) * WIDTH * HEIGHT) + ((obj->z-z_offset) * HEIGHT) + (obj->y-y_offset)] = obj;
 
-        //CULLING
-        Block *eval_block = access_block(obj->x-1, obj->y-1, obj->z);
+        //Cull/prune unseen blocks
+        set_visibility(obj);
 
-        if(eval_block && obj->x < LENGTH+x_offset && obj->y < HEIGHT+y_offset && obj->z < WIDTH+z_offset)
+        Block *dirt_check = access_block(obj->x - x_offset, (obj->y-1) - y_offset, obj->z - z_offset);
+
+        if(dirt_check)
         {
-           if(obj->y > x_offset && obj->x > y_offset && obj->z > z_offset)
-            {
-                //Names are in relation to the block being evaluated
-                Block *above = access_block(obj->x-1, obj->y, obj->z);
-                Block *below = access_block(obj->x-1, obj->y-2, obj->z);
-                Block *left = access_block(obj->x-2, obj->y-1, obj->z );
-                Block *right = access_block(obj->x, obj->y-1, obj->z);
-                Block *behind = access_block(obj->x-1, obj->y-1, obj->z-1);
-                Block *front_ = access_block(obj->x-1, obj->y-1, obj->z+1);
-
-                if(above && below && left && right && behind && front_)
-                {
-                    eval_block->visible = false;
-                }
-            }
+//            dirt_check->load_texture(the_pool("Grass"));
         }
     }
 
@@ -84,7 +92,7 @@ void Chunk::add_object()
 
 Block * Chunk::access_block(const int &x, const int &y, const int &z)
 {
-    return the_chunk[((x-x_offset) * WIDTH * HEIGHT) + ((y-y_offset) * WIDTH) + (z-z_offset)];
+    return the_chunk[(x * WIDTH * HEIGHT) + (z * HEIGHT) + y];
 }
 
 void Chunk::render()
