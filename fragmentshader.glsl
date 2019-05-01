@@ -13,7 +13,7 @@ void main() {
      vec3 nNormal = normalize(interpolatedNormal);
      float diffuse = max(0.0, nNormal.z);
      //Only ambient light for now
-     color = texcolor;
+//     color = texcolor;
 
-//     color = texcolor * diffuse;
+     color = texcolor * diffuse;
 }

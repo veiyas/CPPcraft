@@ -44,11 +44,12 @@ void Chunk::add_object()
     if(num_objects == LENGTH*WIDTH*HEIGHT){return;}
 
     //Create perlin sample with block position as parameters
-    double temp_perlin = perlin.noise((length_step + x_offset)*horizontal_scale, (height_step + y_offset) * vertical_scale, (width_step + z_offset) * horizontal_scale);
-    temp_perlin -= 0.05;
+    double perlin_sample = perlin.noise((length_step + x_offset)*horizontal_scale, (height_step + y_offset) * vertical_scale, (width_step + z_offset) * horizontal_scale);
+    //Add random noise
+    perlin_sample -= 0.05;
 
     //Create new block with perlin sample and texturize
-    if(temp_perlin > PERLIN_LIMIT) {
+    if(perlin_sample > PERLIN_LIMIT) {
         Block *obj = new Solid(length_step + x_offset, height_step + y_offset, width_step + z_offset);
 
         //Rudimentary texture selector

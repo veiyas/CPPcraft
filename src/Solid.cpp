@@ -24,9 +24,9 @@ void Solid::translate_block(const float &x, const float &y, const float &z)
         vertexarray[i]   += (2*x);
         vertexarray[i+1] += (2*y);
         vertexarray[i+2] += (2*z);
-//        vertexarray[i+3] += (2*x);
-//        vertexarray[i+4] += (2*y);
-//        vertexarray[i+5] += (2*z);
+        vertexarray[i+3] += (2*x);
+        vertexarray[i+4] += (2*y);
+        vertexarray[i+5] += (2*z);
     }
 
     prep_block();
