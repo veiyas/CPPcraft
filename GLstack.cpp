@@ -122,7 +122,7 @@ int main(int argc, char *argv[]) {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
     // Open a square window (aspect 1:1) to fill half the screen height
-    window = glfwCreateWindow(vidmode->height/12, vidmode->height/12, "GLprimer", nullptr, nullptr);
+    window = glfwCreateWindow(vidmode->height/1.2, vidmode->height/1.2, "GLprimer", nullptr, nullptr);
     if (!window)
     {
         glfwTerminate(); // No window was opened, so we can't continue in any useful way
@@ -167,12 +167,16 @@ int main(int argc, char *argv[]) {
 	float x_move = 0;
 	float y_move = 0;
 	float z_move = 0;
+
 /********************************************************
                         TEST AREA
 ********************************************************/
-
-    Mesh test{0,0,0};
     std::cout << "\nDone\n";
+
+    Chunk test1{0,0,0};
+    Chunk test2{1,0,0};
+    Chunk test3{-1,0,0};
+    Chunk test4{0,0,-1};
 
 /********************************************************
 ********************************************************/
@@ -221,13 +225,14 @@ int main(int argc, char *argv[]) {
                 RENDERING CODE GOES HERE
 ********************************************************/
 
-
-//        for(size_t i = 0; i < world.size(); i++)
-//        {
-//            world[i]->add_object();
-//            world[i]->render();
-//        }
-
+        test1.add_object();
+        test1.render();
+//        test2.add_object();
+//        test2.render();
+//        test3.add_object();
+//        test3.render();
+//        test4.add_object();
+//        test4.render();
 
 /********************************************************
 

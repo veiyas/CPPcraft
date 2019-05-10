@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1557510124 source:c:\users\david\documents\projects\c++craft\glstack.cpp
+1557531736 source:c:\users\david\documents\projects\c++craft\glstack.cpp
 	<cstdio>
 	<cstdlib>
 	<cmath>
@@ -14,11 +14,13 @@
 	"Chunk.h"
 	"Solid.h"
 	"Air.h"
+	"Mesh.h"
 	"PerlinNoise.hpp"
 	<functional>
 	<vector>
 	<string>
 	<map>
+	<iterator>
 
 1551289340 c:\users\david\documents\projects\c++craft\glfw\glfw3.h
 	<stddef.h>
@@ -256,16 +258,19 @@
 1556551308 c:\users\david\documents\projects\cppcraft\include\solid.h
 	<Block.h>
 
-1557510282 source:c:\users\david\documents\projects\c++craft\chunk.cpp
+1557530847 source:c:\users\david\documents\projects\c++craft\chunk.cpp
 	"Chunk.h"
 	"Block.h"
 	"Solid.h"
 	"Air.h"
 	<iostream>
 	<vector>
+	<memory>
+	<algorithm>
 
-1556568535 c:\users\david\documents\projects\c++craft\chunk.h
+1557530997 c:\users\david\documents\projects\c++craft\chunk.h
 	"Block.h"
+	"Mesh.h"
 	"TexturePool.hpp"
 	"PerlinNoise.hpp"
 
@@ -278,7 +283,7 @@
 1551985392 source:c:\users\david\documents\projects\c++craft\src\air.cpp
 	"Air.h"
 
-1557510246 source:c:\users\david\documents\projects\c++craft\src\solid.cpp
+1557510969 source:c:\users\david\documents\projects\c++craft\src\solid.cpp
 	"Solid.h"
 
 1556282249 source:h:\cppcraft\block.cpp
@@ -598,4 +603,19 @@
 	<random>
 	<algorithm>
 	<cmath>
+
+1557526341 source:c:\users\david\documents\projects\c++craft\mesh.cpp
+	"Mesh.h"
+	<functional>
+	<vector>
+	<string>
+	<map>
+	<iterator>
+
+1557532130 c:\users\david\documents\projects\c++craft\mesh.h
+	"Block.h"
+	"Chunk.h"
+	"Solid.h"
+	"Air.h"
+	"PerlinNoise.hpp"
 
