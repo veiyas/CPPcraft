@@ -41,7 +41,7 @@ void Solid::print_info() const
 
 void Solid::load_texture(Texture &the_tex)
 {
-    tex = the_tex;
+    tex_id = the_tex.texID;
 }
 
 void Solid::prep_block()
@@ -91,7 +91,7 @@ void Solid::render()
     if(visible)
     {
         //Bind texture
-        glBindTexture(GL_TEXTURE_2D, tex.texID);
+        glBindTexture(GL_TEXTURE_2D, tex_id);
         glBindVertexArray(vao);
 
         //Render
