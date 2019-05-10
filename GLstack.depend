@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1557531736 source:c:\users\david\documents\projects\c++craft\glstack.cpp
+1557535792 source:c:\users\david\documents\projects\c++craft\glstack.cpp
 	<cstdio>
 	<cstdlib>
 	<cmath>
@@ -21,6 +21,7 @@
 	<string>
 	<map>
 	<iterator>
+	<chrono>
 
 1551289340 c:\users\david\documents\projects\c++craft\glfw\glfw3.h
 	<stddef.h>
@@ -268,7 +269,7 @@
 	<memory>
 	<algorithm>
 
-1557530997 c:\users\david\documents\projects\c++craft\chunk.h
+1557535386 c:\users\david\documents\projects\c++craft\chunk.h
 	"Block.h"
 	"Mesh.h"
 	"TexturePool.hpp"
@@ -612,10 +613,33 @@
 	<map>
 	<iterator>
 
-1557532130 c:\users\david\documents\projects\c++craft\mesh.h
+1557535431 c:\users\david\documents\projects\c++craft\mesh.h
+	"Chunk.h"
+	"PerlinNoise.hpp"
+
+1557534947 c:\users\david\documents\projects\c++craft\mesh.cpp
+	"Mesh.h"
+
+1557534947 c:\users\david\documents\projects\c++craft\glstack.cpp
+	<cstdio>
+	<cstdlib>
+	<cmath>
+	<GLFW/glfw3.h>
+	<GL/glext.h>
+	"tnm061.hpp"
+	"Shader.hpp"
+	"TriangleSoup.hpp"
+	"Rotator.hpp"
+	"MatrixStack.hpp"
 	"Block.h"
 	"Chunk.h"
 	"Solid.h"
 	"Air.h"
+	"Mesh.h"
 	"PerlinNoise.hpp"
+	<functional>
+	<vector>
+	<string>
+	<map>
+	<iterator>
 

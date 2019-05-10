@@ -69,6 +69,7 @@
 #include <string>
 #include <map>
 #include <iterator>
+#include <chrono>
 
 /*
  * setupViewport() - set up the OpenGL viewport.
@@ -80,12 +81,18 @@
  * A callback function would require P to be changed indirectly
  * in some manner, which is somewhat awkward in this case.
  */
+
+ typedef std::chrono::high_resolution_clock Clock;
+
+
 //Local function declarations
 void setupViewport(GLFWwindow *window, GLfloat *P);
 void create_perspective_matrix(float M[], const float &vfov, const float &aspect, const float &znear, const float &zfar);
 const float MOVE_SPEED = 0.5;
 void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z);
 std::map<std::string, Texture> create_texture_pool();
+
+
 
 
 /*
@@ -171,13 +178,14 @@ int main(int argc, char *argv[]) {
 /********************************************************
                         TEST AREA
 ********************************************************/
-    std::cout << "\nDone\n";
+    auto t1 = Clock::now();
 
     Chunk test1{0,0,0};
-    Chunk test2{1,0,0};
-    Chunk test3{-1,0,0};
-    Chunk test4{0,0,-1};
 
+
+
+    auto t2 = Clock::now();
+    std::cout << "\nWorld constructed in " << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count() << " milliseconds\n";
 /********************************************************
 ********************************************************/
 
