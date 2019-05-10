@@ -61,12 +61,14 @@
 #include "Chunk.h"
 #include "Solid.h"
 #include "Air.h"
+#include "Mesh.h"
 #include "PerlinNoise.hpp"
 
 #include <functional>
 #include <vector>
 #include <string>
 #include <map>
+#include <iterator>
 
 /*
  * setupViewport() - set up the OpenGL viewport.
@@ -84,6 +86,7 @@ void create_perspective_matrix(float M[], const float &vfov, const float &aspect
 const float MOVE_SPEED = 0.5;
 void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z);
 std::map<std::string, Texture> create_texture_pool();
+
 
 /*
  * main(argc, argv) - the standard C entry point for the program
@@ -119,7 +122,7 @@ int main(int argc, char *argv[]) {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
     // Open a square window (aspect 1:1) to fill half the screen height
-    window = glfwCreateWindow(vidmode->height/1.2, vidmode->height/1.2, "GLprimer", nullptr, nullptr);
+    window = glfwCreateWindow(vidmode->height/12, vidmode->height/12, "GLprimer", nullptr, nullptr);
     if (!window)
     {
         glfwTerminate(); // No window was opened, so we can't continue in any useful way
@@ -168,23 +171,8 @@ int main(int argc, char *argv[]) {
                         TEST AREA
 ********************************************************/
 
-//    Chunk test1{0,0,0};
-//    Chunk test2{1,0,0};
-//    Chunk test3{0,0,1};
-//    Chunk test4{1,0,1};
-//    Chunk test5{0,0,-1};
-
-    std::vector<Chunk*> world;
-
-    for(size_t i = 0; i < 4; i++)
-    {
-        for(size_t j = 0; j < 4; j++)
-        {
-            world.push_back(new Chunk(i,0,j));
-        }
-    }
-
-    std::cout << world.size();
+    Mesh test{0,0,0};
+    std::cout << "\nDone\n";
 
 /********************************************************
 ********************************************************/
@@ -225,7 +213,7 @@ int main(int argc, char *argv[]) {
             MVstack.rotX(rotator.theta);
             MVstack.rotY(rotator.phi);
             MVstack.translate(x_move - 8, y_move - 8, z_move - 50);
-            glUniformMatrix4fv( location_MV, 1, GL_FALSE, MVstack.getCurrentMatrix() );
+            glUniformMatrix4fv( location_MV, 1, GL_FALSE, MVstack.getCurrentMatrix());
 
         MVstack.pop(); // Restore the initial, untouched matrix
 
@@ -234,11 +222,11 @@ int main(int argc, char *argv[]) {
 ********************************************************/
 
 
-        for(size_t i = 0; i < world.size(); i++)
-        {
-            world[i]->add_object();
-            world[i]->render();
-        }
+//        for(size_t i = 0; i < world.size(); i++)
+//        {
+//            world[i]->add_object();
+//            world[i]->render();
+//        }
 
 
 /********************************************************
