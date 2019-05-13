@@ -4,113 +4,56 @@
 #include "Air.h"
 #include <iostream>
 #include <vector>
+#include <memory>
+#include <algorithm>
 
-Chunk::Chunk(const int pos_x, const int pos_y, const int pos_z)
-    : x_offset{pos_x*LENGTH}, y_offset{pos_y*HEIGHT}, z_offset{pos_z*WIDTH}
+void render_block(Block * b)
 {
-    //Initialize with nullptrs
-    the_chunk = new Block*[LENGTH*WIDTH*HEIGHT]{nullptr};
+    b->render();
+}
+
+Chunk::Chunk(const int & x, const int & y, const int & z)
+    :mesh{Mesh(x,y,z)}, MAX_SIZE{mesh.get_size()}
+{
     the_pool = TexturePool();
 }
 
 void Chunk::set_visibility(Block *obj)
 {
-    //CULLING
-    Block *eval_block = access_block((obj->x-1) - x_offset, (obj->y-1) - y_offset, obj->z - z_offset);
 
-    if(eval_block && obj->x - x_offset < LENGTH && obj->y - y_offset < HEIGHT && obj->z - z_offset < WIDTH)
-    {
-       if(obj->x > x_offset && obj->y > y_offset && obj->z > z_offset)
-        {
-            //Names are in relation to the block being evaluated
-            Block *above = access_block( (obj->x-1) - x_offset, (obj->y)   - y_offset, (obj->z)   - z_offset);
-            Block *below = access_block( (obj->x-1) - x_offset, (obj->y-2) - y_offset, (obj->z)   - z_offset);
-            Block *left = access_block(  (obj->x-2) - x_offset, (obj->y-1) - y_offset, (obj->z)   - z_offset);
-            Block *right = access_block( (obj->x)   - x_offset, (obj->y-1) - y_offset, (obj->z)   - z_offset);
-            Block *behind = access_block((obj->x-1) - x_offset, (obj->y-1) - y_offset, (obj->z-1) - z_offset);
-            Block *front_ = access_block((obj->x-1) - x_offset, (obj->y-1) - y_offset, (obj->z+1) - z_offset);
-
-            if(above && below && left && right && behind && front_)
-            {
-                eval_block->visible = false;
-            }
-        }
-    }
 }
 
 void Chunk::add_object()
 {
-    //Size check
-    if(num_objects == LENGTH*WIDTH*HEIGHT){return;}
+    //Check if chunk is full
+    //if(num_objects == LENGTH*WIDTH*HEIGHT) beautiful bug
+    if(num_objects == MAX_SIZE) return;
 
-    //Create perlin sample with block position as parameters
-    double perlin_sample = perlin.noise((length_step + x_offset)*horizontal_scale, (height_step + y_offset) * vertical_scale, (width_step + z_offset) * horizontal_scale);
-    //Add random noise
-    perlin_sample -= 0.05;
+    //Create temp vars to put into vector
+    Shell temp_shell = mesh(num_objects);
+    Block * temp_block = new Solid(temp_shell.x, temp_shell.y, temp_shell.z);
 
-    //Create new block with perlin sample and texturize
-    if(perlin_sample > PERLIN_LIMIT) {
-        Block *obj = new Solid(length_step + x_offset, height_step + y_offset, width_step + z_offset);
+    //Load texture
+    temp_block->load_texture(the_pool("Grass"));
 
-        //Rudimentary texture selector
-        if(height_step > 1 && height_step < 28)
-            obj->load_texture(the_pool("Grass"));
-        else if(height_step >= 28)
-            obj->load_texture(the_pool("Grass"));
-        else
-            obj->load_texture(the_pool("Grass"));
-
-        //Attach block to chunk
-        the_chunk[((obj->x-x_offset) * WIDTH * HEIGHT) + ((obj->z-z_offset) * HEIGHT) + (obj->y-y_offset)] = obj;
-
-        //Cull/prune unseen blocks
-        set_visibility(obj);
-
-        Block *dirt_check = access_block(obj->x - x_offset, (obj->y-1) - y_offset, obj->z - z_offset);
-
-        if(dirt_check)
-        {
-//            dirt_check->load_texture(the_pool("Grass"));
-        }
-    }
-
-    ++length_step;
-
-    if(length_step == LENGTH)
-    {
-        ++width_step;
-        length_step = 0;
-    }
-
-    if(width_step == WIDTH)
-    {
-        ++height_step;
-        width_step = 0;
-    }
+    chunk.push_back(temp_block);
 
     ++num_objects;
 }
 
 Block * Chunk::access_block(const int &x, const int &y, const int &z)
 {
-    return the_chunk[(x * WIDTH * HEIGHT) + (z * HEIGHT) + y];
+//    return the_chunk[(x * WIDTH * HEIGHT) + (z * HEIGHT) + y];
 }
 
 void Chunk::render()
 {
-    for(size_t i = num_objects - 1; i > 0; i--)
-    {
-        if(the_chunk[i])
-            the_chunk[i]->render();
-
-        else
-            continue;
-    }
+    std::for_each(std::begin(chunk), std::end(chunk), render_block);
 }
 
 void Chunk::print_chunk_info()
 {
-    std::cout << "Number of objects in chunk: " << num_objects << ", size: " << sizeof(**the_chunk) << "\n";
+    std::cout << "Number of objects in chunk: " << num_objects << "\n";
 
 }
 

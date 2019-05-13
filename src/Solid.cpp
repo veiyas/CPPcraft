@@ -41,7 +41,7 @@ void Solid::print_info() const
 
 void Solid::load_texture(Texture &the_tex)
 {
-    tex = the_tex;
+    tex_id = the_tex.texID;
 }
 
 void Solid::prep_block()
@@ -91,7 +91,7 @@ void Solid::render()
     if(visible)
     {
         //Bind texture
-        glBindTexture(GL_TEXTURE_2D, tex.texID);
+        glBindTexture(GL_TEXTURE_2D, tex_id);
         glBindVertexArray(vao);
 
         //Render
@@ -109,7 +109,6 @@ void Solid::create_block()
     // The data array contains 8 floats per vertex:
     // coordinate xyz, normal xyz, texcoords st
     const GLfloat vertex_array_data[] = {
-
          //Back face
         -block_size, -block_size, -block_size,   0.0f, 0.0f,-1.0f,   0.0f, 1.0f/3.0f,  // Vertex 0
          block_size, -block_size, -block_size,   0.0f, 0.0f,-1.0f,   1.0f, 1.0f/3.0f,  // Vertex 1
@@ -131,15 +130,15 @@ void Solid::create_block()
         -block_size,  block_size, -block_size,  -1.0f, 0.0f, 0.0f,   0.0f, 2.0f/3.0f,  // Vertex 2 - 14
         -block_size,  block_size,  block_size,  -1.0f, 0.0f, 0.0f,   1.0f, 2.0f/3.0f,  // Vertex 6 - 15
          //Top face
-        -block_size,  block_size,  block_size,   0.0f, 1.0f, 0.0f,   0.0f,  2.0f/3.0f,    // Vertex 6 - 16
-         block_size,  block_size,  block_size,   0.0f, 1.0f, 0.0f,   1.0f,  2.0f/3.0f,  // Vertex 7 - 17
-        -block_size,  block_size, -block_size,   0.0f, 1.0f, 0.0f,   0.0f,  1.0f,    // Vertex 2 - 18
-         block_size,  block_size, -block_size,   0.0f, 1.0f, 0.0f,   1.0f,  1.0f,  // Vertex 3 - 19
+        -block_size,  block_size,  block_size,   0.0f, 1.0f, 0.0f,   0.0f,  2.0f/3.0f, // Vertex 6 - 16
+         block_size,  block_size,  block_size,   0.0f, 1.0f, 0.0f,   1.0f,  2.0f/3.0f, // Vertex 7 - 17
+        -block_size,  block_size, -block_size,   0.0f, 1.0f, 0.0f,   0.0f,  1.0f,      // Vertex 2 - 18
+         block_size,  block_size, -block_size,   0.0f, 1.0f, 0.0f,   1.0f,  1.0f,      // Vertex 3 - 19
          //Bottom face
-        -block_size, -block_size, -block_size,   0.0f,-1.0f, 0.0f,   0.0f,  0.0f, // Vertex 0 - 20
-         block_size, -block_size, -block_size,   0.0f,-1.0f, 0.0f,   1.0f,  0.0f,    // Vertex 1 - 21
-        -block_size, -block_size,  block_size,   0.0f,-1.0f, 0.0f,   0.0f,  1.0f/3.0f,  // Vertex 4 - 22
-         block_size, -block_size,  block_size,   0.0f,-1.0f, 0.0f,   1.0f,  1.0f/3.0f,  // Vertex 5 - 23
+        -block_size, -block_size, -block_size,   0.0f,-1.0f, 0.0f,   0.0f,  0.0f,      // Vertex 0 - 20
+         block_size, -block_size, -block_size,   0.0f,-1.0f, 0.0f,   1.0f,  0.0f,      // Vertex 1 - 21
+        -block_size, -block_size,  block_size,   0.0f,-1.0f, 0.0f,   0.0f,  1.0f/3.0f, // Vertex 4 - 22
+         block_size, -block_size,  block_size,   0.0f,-1.0f, 0.0f,   1.0f,  1.0f/3.0f, // Vertex 5 - 23
     };
     const GLuint index_array_data[] = {
         //Back face

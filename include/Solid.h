@@ -23,12 +23,10 @@ public:
 
 private:
     //Data
-    Texture tex;
+    GLuint tex_id;
     const GLfloat block_size = 1.0f;
 
     //Methods
-    //Set texture used in ctor
-    void set_texture(const char *tex_name);
 
     //Used for dynamic allocation
     void create_block();

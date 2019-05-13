@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1556492538 source:c:\users\david\documents\projects\c++craft\glstack.cpp
+1557535792 source:c:\users\david\documents\projects\c++craft\glstack.cpp
 	<cstdio>
 	<cstdlib>
 	<cmath>
@@ -14,11 +14,14 @@
 	"Chunk.h"
 	"Solid.h"
 	"Air.h"
+	"Mesh.h"
 	"PerlinNoise.hpp"
 	<functional>
 	<vector>
 	<string>
 	<map>
+	<iterator>
+	<chrono>
 
 1551289340 c:\users\david\documents\projects\c++craft\glfw\glfw3.h
 	<stddef.h>
@@ -50,7 +53,7 @@
 	"tnm061.hpp"
 	<cstdio>
 
-1551289340 c:\users\david\documents\projects\c++craft\texture.hpp
+1557510861 c:\users\david\documents\projects\c++craft\texture.hpp
 	<GLFW/glfw3.h>
 	<cstdio>
 	<cstring>
@@ -165,7 +168,7 @@
 1556281271 c:\users\david\documents\projects\cppcraft\tnm061.hpp
 	<GL/glext.h>
 
-1556551308 source:c:\users\david\documents\projects\cppcraft\glstack.cpp
+1557758474 source:c:\users\david\documents\projects\cppcraft\glstack.cpp
 	<cstdio>
 	<cstdlib>
 	<cmath>
@@ -180,11 +183,14 @@
 	"Chunk.h"
 	"Solid.h"
 	"Air.h"
+	"Mesh.h"
 	"PerlinNoise.hpp"
 	<functional>
 	<vector>
 	<string>
 	<map>
+	<iterator>
+	<chrono>
 
 1556281271 c:\users\david\documents\projects\cppcraft\shader.hpp
 	<GLFW/glfw3.h>
@@ -231,16 +237,19 @@
 	<GL/glext.h>
 	"tnm061.hpp"
 
-1556717705 source:c:\users\david\documents\projects\cppcraft\chunk.cpp
+1557755287 source:c:\users\david\documents\projects\cppcraft\chunk.cpp
 	"Chunk.h"
 	"Block.h"
 	"Solid.h"
 	"Air.h"
 	<iostream>
 	<vector>
+	<memory>
+	<algorithm>
 
-1556551308 c:\users\david\documents\projects\cppcraft\chunk.h
+1557754943 c:\users\david\documents\projects\cppcraft\chunk.h
 	"Block.h"
+	"Mesh.h"
 	"TexturePool.hpp"
 	"PerlinNoise.hpp"
 
@@ -250,26 +259,29 @@
 1556293574 c:\users\david\documents\projects\cppcraft\include\air.h
 	<Block.h>
 
-1556721761 source:c:\users\david\documents\projects\cppcraft\src\solid.cpp
+1557590550 source:c:\users\david\documents\projects\cppcraft\src\solid.cpp
 	"Solid.h"
 
-1556551308 c:\users\david\documents\projects\cppcraft\include\solid.h
+1557590550 c:\users\david\documents\projects\cppcraft\include\solid.h
 	<Block.h>
 
-1556491841 source:c:\users\david\documents\projects\c++craft\chunk.cpp
+1557530847 source:c:\users\david\documents\projects\c++craft\chunk.cpp
 	"Chunk.h"
 	"Block.h"
 	"Solid.h"
 	"Air.h"
 	<iostream>
 	<vector>
+	<memory>
+	<algorithm>
 
-1556492929 c:\users\david\documents\projects\c++craft\chunk.h
+1557535386 c:\users\david\documents\projects\c++craft\chunk.h
 	"Block.h"
+	"Mesh.h"
 	"TexturePool.hpp"
 	"PerlinNoise.hpp"
 
-1556225065 c:\users\david\documents\projects\c++craft\include\solid.h
+1557510276 c:\users\david\documents\projects\c++craft\include\solid.h
 	<Block.h>
 
 1556296995 c:\users\david\documents\projects\c++craft\include\air.h
@@ -278,7 +290,7 @@
 1551985392 source:c:\users\david\documents\projects\c++craft\src\air.cpp
 	"Air.h"
 
-1556476595 source:c:\users\david\documents\projects\c++craft\src\solid.cpp
+1557510969 source:c:\users\david\documents\projects\c++craft\src\solid.cpp
 	"Solid.h"
 
 1556282249 source:h:\cppcraft\block.cpp
@@ -591,11 +603,53 @@
 1556476595 c:\users\david\documents\projects\c++craft\perlinnoise.hpp
 	<vector>
 
-1556492911 source:c:\users\david\documents\projects\c++craft\perlinnoise.cpp
+1556493123 source:c:\users\david\documents\projects\c++craft\perlinnoise.cpp
 	"PerlinNoise.hpp"
 	<numeric>
 	<iterator>
 	<random>
 	<algorithm>
 	<cmath>
+
+1557526341 source:c:\users\david\documents\projects\c++craft\mesh.cpp
+	"Mesh.h"
+	<functional>
+	<vector>
+	<string>
+	<map>
+	<iterator>
+
+1557535431 c:\users\david\documents\projects\c++craft\mesh.h
+	"Chunk.h"
+	"PerlinNoise.hpp"
+
+1557534947 c:\users\david\documents\projects\c++craft\mesh.cpp
+	"Mesh.h"
+
+1557534947 c:\users\david\documents\projects\c++craft\glstack.cpp
+	<cstdio>
+	<cstdlib>
+	<cmath>
+	<GLFW/glfw3.h>
+	<GL/glext.h>
+	"tnm061.hpp"
+	"Shader.hpp"
+	"TriangleSoup.hpp"
+	"Rotator.hpp"
+	"MatrixStack.hpp"
+	"Block.h"
+	"Chunk.h"
+	"Solid.h"
+	"Air.h"
+	"Mesh.h"
+	"PerlinNoise.hpp"
+	<functional>
+	<vector>
+	<string>
+	<map>
+	<iterator>
+
+1557758558 c:\users\david\documents\projects\cppcraft\mesh.h
+	"Chunk.h"
+	"PerlinNoise.hpp"
 

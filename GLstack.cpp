@@ -61,12 +61,15 @@
 #include "Chunk.h"
 #include "Solid.h"
 #include "Air.h"
+#include "Mesh.h"
 #include "PerlinNoise.hpp"
 
 #include <functional>
 #include <vector>
 #include <string>
 #include <map>
+#include <iterator>
+#include <chrono>
 
 /*
  * setupViewport() - set up the OpenGL viewport.
@@ -78,12 +81,19 @@
  * A callback function would require P to be changed indirectly
  * in some manner, which is somewhat awkward in this case.
  */
+
+ typedef std::chrono::high_resolution_clock Clock;
+
+
 //Local function declarations
 void setupViewport(GLFWwindow *window, GLfloat *P);
 void create_perspective_matrix(float M[], const float &vfov, const float &aspect, const float &znear, const float &zfar);
 const float MOVE_SPEED = 0.5;
 void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z);
 std::map<std::string, Texture> create_texture_pool();
+
+
+
 
 /*
  * main(argc, argv) - the standard C entry point for the program
@@ -119,7 +129,7 @@ int main(int argc, char *argv[]) {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
     // Open a square window (aspect 1:1) to fill half the screen height
-    window = glfwCreateWindow(vidmode->height/1.2, vidmode->height/1.2, "GLprimer", nullptr, nullptr);
+    window = glfwCreateWindow(vidmode->height/1, vidmode->height/1, "GLprimer", nullptr, nullptr);
     if (!window)
     {
         glfwTerminate(); // No window was opened, so we can't continue in any useful way
@@ -164,28 +174,19 @@ int main(int argc, char *argv[]) {
 	float x_move = 0;
 	float y_move = 0;
 	float z_move = 0;
+
 /********************************************************
                         TEST AREA
 ********************************************************/
+    auto t1 = Clock::now();
 
-//    Chunk test1{0,0,0};
-//    Chunk test2{1,0,0};
-//    Chunk test3{0,0,1};
-//    Chunk test4{1,0,1};
-//    Chunk test5{0,0,-1};
+    Chunk test1{0,0,0};
+    Chunk test2{1,0,0};
+    Chunk test3{1,0,1};
+    Chunk test4{0,0,1};
 
-    std::vector<Chunk*> world;
-
-    for(size_t i = 0; i < 4; i++)
-    {
-        for(size_t j = 0; j < 4; j++)
-        {
-            world.push_back(new Chunk(i,0,j));
-        }
-    }
-
-    std::cout << world.size();
-
+    auto t2 = Clock::now();
+    std::cout << "\nWorld constructed in " << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count() << " milliseconds\n";
 /********************************************************
 ********************************************************/
 
@@ -225,7 +226,7 @@ int main(int argc, char *argv[]) {
             MVstack.rotX(rotator.theta);
             MVstack.rotY(rotator.phi);
             MVstack.translate(x_move - 8, y_move - 8, z_move - 50);
-            glUniformMatrix4fv( location_MV, 1, GL_FALSE, MVstack.getCurrentMatrix() );
+            glUniformMatrix4fv( location_MV, 1, GL_FALSE, MVstack.getCurrentMatrix());
 
         MVstack.pop(); // Restore the initial, untouched matrix
 
@@ -233,13 +234,14 @@ int main(int argc, char *argv[]) {
                 RENDERING CODE GOES HERE
 ********************************************************/
 
-
-        for(size_t i = 0; i < world.size(); i++)
-        {
-            world[i]->add_object();
-            world[i]->render();
-        }
-
+        test1.add_object();
+        test1.render();
+        test2.add_object();
+        test2.render();
+        test3.add_object();
+        test3.render();
+        test4.add_object();
+        test4.render();
 
 /********************************************************
 
