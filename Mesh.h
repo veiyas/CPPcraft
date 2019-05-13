@@ -4,11 +4,13 @@
 #include "PerlinNoise.hpp"
 #pragma once
 
+const int air = -1000;
+
 //Block placeholder construct
 struct Shell
 {
     Shell()
-        : x{0}, y{0}, z{0} {}
+        : x{0}, y{air}, z{0} {}
     Shell(int x_, int y_, int z_)
         : x{x_}, y{y_}, z{z_} {}
 
@@ -47,12 +49,60 @@ class Mesh
         }
         double xtemp, ytemp, ztemp;
 
-        //Culling TODO
+        for(size_t i = 0; i < LENGTH; i++)
+        {
+            for(size_t j = 0; j < HEIGHT; j++)
+            {
+               for(size_t k = 0; k < WIDTH; k++)
+                {
+                    xtemp = temp_array[i][j][k].x;
+                    ytemp = temp_array[i][j][k].y;
+                    ztemp = temp_array[i][j][k].z;
+                }
+            }
+        }
 
+        //Edge rows
 
+        //Culling
+        for(size_t j = 0; j < HEIGHT; j++)
+        {
+            for(size_t i = 0; i < LENGTH; i++)
+            {
+               for(size_t k = 0; k < WIDTH; k++)
+                {
+                    ytemp = temp_array[i][j][k].y;
+
+                    if(ytemp == air) continue;
+
+                    if(j == 0 || j == HEIGHT-1 || i == 0 || i == LENGTH-1 || k == 0 || k == WIDTH-1)
+                    {
+                        xtemp = temp_array[i][j][k].x;
+                        ztemp = temp_array[i][j][k].z;
+                        mesh.push_back(Shell(xtemp,ytemp,ztemp));
+                    }
+
+                    else
+                    {
+                        const int above = temp_array[i][j+1][k].y;
+                        const int below = temp_array[i][j-1][k].y;
+                        const int front_ = temp_array[i][j][k+1].y;
+                        const int back_ = temp_array[i][j][k-1].y;
+                        const int left = temp_array[i-1][j][k].y;
+                        const int right = temp_array[i+1][j][k].y;
+
+                        if(above == air || below == air || front_ == air || back_ == air || left == air || right == air)
+                        {
+                            xtemp = temp_array[i][j][k].x;
+                            ztemp = temp_array[i][j][k].z;
+                            mesh.push_back(Shell(xtemp,ytemp,ztemp));
+                        }
+                    }
+                }
+            }
+        }
         //Save memory
         mesh.shrink_to_fit();
-
     }
     ~Mesh() = default;
 
@@ -64,9 +114,9 @@ class Mesh
     int get_size(){return mesh.size();}
 
     //Members
-    const static int LENGTH = 16;
-    const static int WIDTH =  16;
-    const static int HEIGHT = 16;
+    const static int LENGTH = 24;
+    const static int WIDTH =  24;
+    const static int HEIGHT = 24;
 
 private:
     //Noise generator

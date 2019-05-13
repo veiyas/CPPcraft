@@ -18,12 +18,10 @@ public:
     //Print info about chunk
     void print_chunk_info();
 
-
     Mesh mesh;
 private:
     //The blocks, uses dynamic binding
     std::vector<Block*> chunk;
-
 
     //Check if the block is surrounded by other block
     void set_visibility(Block *obj);

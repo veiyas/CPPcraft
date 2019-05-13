@@ -129,7 +129,7 @@ int main(int argc, char *argv[]) {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
     // Open a square window (aspect 1:1) to fill half the screen height
-    window = glfwCreateWindow(vidmode->height/1.2, vidmode->height/1.2, "GLprimer", nullptr, nullptr);
+    window = glfwCreateWindow(vidmode->height/1, vidmode->height/1, "GLprimer", nullptr, nullptr);
     if (!window)
     {
         glfwTerminate(); // No window was opened, so we can't continue in any useful way
@@ -181,8 +181,9 @@ int main(int argc, char *argv[]) {
     auto t1 = Clock::now();
 
     Chunk test1{0,0,0};
-
-
+    Chunk test2{1,0,0};
+    Chunk test3{1,0,1};
+    Chunk test4{0,0,1};
 
     auto t2 = Clock::now();
     std::cout << "\nWorld constructed in " << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count() << " milliseconds\n";
@@ -235,12 +236,12 @@ int main(int argc, char *argv[]) {
 
         test1.add_object();
         test1.render();
-//        test2.add_object();
-//        test2.render();
-//        test3.add_object();
-//        test3.render();
-//        test4.add_object();
-//        test4.render();
+        test2.add_object();
+        test2.render();
+        test3.add_object();
+        test3.render();
+        test4.add_object();
+        test4.render();
 
 /********************************************************
 
