@@ -12,8 +12,8 @@ void render_block(Block * b)
     b->render();
 }
 
-Chunk::Chunk(const int & x, const int & y, const int & z)
-    :mesh{Mesh(x,y,z)}, MAX_SIZE{mesh.get_size()}
+Chunk::Chunk(const int & x, const int & y, const int & z, bool seeded)
+    :mesh{Mesh(x,y,z,seeded)}, MAX_SIZE{mesh.get_size()}
 {
     the_pool = TexturePool();
 }
@@ -34,7 +34,7 @@ void Chunk::add_object()
     Block * temp_block = new Solid(temp_shell.x, temp_shell.y, temp_shell.z);
 
     //Load texture
-    temp_block->load_texture(the_pool("Grass"));
+    temp_block->load_texture(the_pool(temp_shell.tex_name));
 
     chunk.push_back(temp_block);
 

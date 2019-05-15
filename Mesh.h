@@ -1,10 +1,16 @@
 #ifndef MESH_H
 #define MESH_H
+
 #include "Chunk.h"
 #include "PerlinNoise.hpp"
+
+#include <chrono>
+#include <random>
+
 #pragma once
 
 const int air = -1000;
+const unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
 
 //Block placeholder construct
 struct Shell
@@ -14,6 +20,8 @@ struct Shell
     Shell(int x_, int y_, int z_)
         : x{x_}, y{y_}, z{z_} {}
 
+    std::string tex_name = "Dirt";
+
     int x;
     int y;
     int z;
@@ -22,16 +30,21 @@ struct Shell
 class Mesh
 {
     public:
-    Mesh(const int pos_x, const int pos_y, const int pos_z)
+    Mesh(const int pos_x, const int pos_y, const int pos_z, bool seeded)
         :X_OFFSET{pos_x*LENGTH}, Y_OFFSET{pos_y*HEIGHT}, Z_OFFSET{pos_z*WIDTH}
     {
-        //Initialize local perlin sample var
+        if(seeded)
+            perlin = PerlinNoise(seed);
+        else
+            perlin = PerlinNoise();
+
+        //Local perlin sample var
         double perlin_sample;
 
         //Create mesh of shells
-        for(size_t i = 0; i < LENGTH; i++)
+        for(int j = 0; j < HEIGHT; j++)
         {
-            for(size_t j = 0; j < HEIGHT; j++)
+            for(size_t i = 0; i < LENGTH; i++)
             {
                for(size_t k = 0; k < WIDTH; k++)
                 {
@@ -47,22 +60,8 @@ class Mesh
                 }
             }
         }
+
         double xtemp, ytemp, ztemp;
-
-        for(size_t i = 0; i < LENGTH; i++)
-        {
-            for(size_t j = 0; j < HEIGHT; j++)
-            {
-               for(size_t k = 0; k < WIDTH; k++)
-                {
-                    xtemp = temp_array[i][j][k].x;
-                    ytemp = temp_array[i][j][k].y;
-                    ztemp = temp_array[i][j][k].z;
-                }
-            }
-        }
-
-        //Edge rows
 
         //Culling
         for(size_t j = 0; j < HEIGHT; j++)
@@ -75,23 +74,54 @@ class Mesh
 
                     if(ytemp == air) continue;
 
-                    if(j == 0 || j == HEIGHT-1 || i == 0 || i == LENGTH-1 || k == 0 || k == WIDTH-1)
+                    if(j == HEIGHT-1)
                     {
                         xtemp = temp_array[i][j][k].x;
                         ztemp = temp_array[i][j][k].z;
-                        mesh.push_back(Shell(xtemp,ytemp,ztemp));
+                        Shell temp_shell = Shell(xtemp,ytemp,ztemp);
+                        temp_shell.tex_name = "Grass";
+                        mesh.push_back(temp_shell);
                     }
+                    else if (j == 0 || i == 0 || i == LENGTH-1 || k == 0 || k == WIDTH-1)
+                    {
+                        const int above = temp_array[i][j+1][k].y;
+                        const int below = temp_array[i][j-1][k].y;
 
+                        if(above == air)
+                        {
+                            xtemp = temp_array[i][j][k].x;
+                            ztemp = temp_array[i][j][k].z;
+                            Shell temp_shell = Shell(xtemp,ytemp,ztemp);
+                            temp_shell.tex_name = "Grass";
+                            mesh.push_back(temp_shell);
+                        }
+                        else
+                        {
+                            xtemp = temp_array[i][j][k].x;
+                            ztemp = temp_array[i][j][k].z;
+                            mesh.push_back(Shell(xtemp,ytemp,ztemp));
+                        }
+                    }
                     else
                     {
                         const int above = temp_array[i][j+1][k].y;
+
+                        if(above == air)
+                        {
+                            xtemp = temp_array[i][j][k].x;
+                            ztemp = temp_array[i][j][k].z;
+                            Shell temp_shell = Shell(xtemp,ytemp,ztemp);
+                            temp_shell.tex_name = "Grass";
+                            mesh.push_back(temp_shell);
+                        }
+
                         const int below = temp_array[i][j-1][k].y;
                         const int front_ = temp_array[i][j][k+1].y;
                         const int back_ = temp_array[i][j][k-1].y;
                         const int left = temp_array[i-1][j][k].y;
                         const int right = temp_array[i+1][j][k].y;
 
-                        if(above == air || below == air || front_ == air || back_ == air || left == air || right == air)
+                        if(below == air || front_ == air || back_ == air || left == air || right == air)
                         {
                             xtemp = temp_array[i][j][k].x;
                             ztemp = temp_array[i][j][k].z;
@@ -114,17 +144,17 @@ class Mesh
     int get_size(){return mesh.size();}
 
     //Members
-    const static int LENGTH = 24;
-    const static int WIDTH =  24;
-    const static int HEIGHT = 24;
+    const static int LENGTH = 10;
+    const static int WIDTH =  10;
+    const static int HEIGHT = 20;
 
 private:
     //Noise generator
-    PerlinNoise perlin{};
+    PerlinNoise perlin;
 
     //Members
     std::vector<Shell> mesh;
-    Shell temp_array[LENGTH][WIDTH][HEIGHT];
+    Shell temp_array[LENGTH][HEIGHT][WIDTH];
 
     //Constants
     const float PERLIN_LIMIT = 0.4;
@@ -135,7 +165,6 @@ private:
     const int X_OFFSET;
     const int Y_OFFSET;
     const int Z_OFFSET;
-
 };
 
 //Mesh::Mesh(const int pos_x, const int pos_y, const int pos_z)

@@ -8,7 +8,7 @@
 class Chunk
 {
 public:
-    Chunk(const int & x, const int & y, const int & z);
+    Chunk(const int & x, const int & y, const int & z, bool seeded);
     ~Chunk() = default;
 
     //Attach an object to this chunk

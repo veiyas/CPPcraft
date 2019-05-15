@@ -69,7 +69,7 @@
 #include <string>
 #include <map>
 #include <iterator>
-#include <chrono>
+
 
 /*
  * setupViewport() - set up the OpenGL viewport.
@@ -88,16 +88,11 @@
 //Local function declarations
 void setupViewport(GLFWwindow *window, GLfloat *P);
 void create_perspective_matrix(float M[], const float &vfov, const float &aspect, const float &znear, const float &zfar);
-const float MOVE_SPEED = 0.5;
 void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z);
 std::map<std::string, Texture> create_texture_pool();
 
+const float MOVE_SPEED = 0.5;
 
-
-
-/*
- * main(argc, argv) - the standard C entry point for the program
- */
 int main(int argc, char *argv[]) {
 
 	TriangleSoup earthSphere;
@@ -129,7 +124,7 @@ int main(int argc, char *argv[]) {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
     // Open a square window (aspect 1:1) to fill half the screen height
-    window = glfwCreateWindow(vidmode->height/1, vidmode->height/1, "GLprimer", nullptr, nullptr);
+    window = glfwCreateWindow(vidmode->width, vidmode->height, "C++Craft", nullptr, nullptr);
     if (!window)
     {
         glfwTerminate(); // No window was opened, so we can't continue in any useful way
@@ -180,10 +175,15 @@ int main(int argc, char *argv[]) {
 ********************************************************/
     auto t1 = Clock::now();
 
-    Chunk test1{0,0,0};
-    Chunk test2{1,0,0};
-    Chunk test3{1,0,1};
-    Chunk test4{0,0,1};
+    std::vector<Chunk> world;
+
+    for(size_t i=0; i < 5; i++)
+    {
+        for(size_t j=0; j < 5; j++)
+        {
+            world.push_back(Chunk(i,0,j,false));
+        }
+    }
 
     auto t2 = Clock::now();
     std::cout << "\nWorld constructed in " << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count() << " milliseconds\n";
@@ -234,14 +234,11 @@ int main(int argc, char *argv[]) {
                 RENDERING CODE GOES HERE
 ********************************************************/
 
-        test1.add_object();
-        test1.render();
-        test2.add_object();
-        test2.render();
-        test3.add_object();
-        test3.render();
-        test4.add_object();
-        test4.render();
+        for(size_t i=0; i < world.size(); i++)
+        {
+            world[i].add_object();
+            world[i].render();
+        }
 
 /********************************************************
 
