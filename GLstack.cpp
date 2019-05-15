@@ -88,10 +88,10 @@
 //Local function declarations
 void setupViewport(GLFWwindow *window, GLfloat *P);
 void create_perspective_matrix(float M[], const float &vfov, const float &aspect, const float &znear, const float &zfar);
-void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z);
+void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z, float &phi, float &theta);
 std::map<std::string, Texture> create_texture_pool();
 
-const float MOVE_SPEED = 0.5;
+const float MOVE_SPEED = 1.0f;
 
 int main(int argc, char *argv[]) {
 
@@ -254,7 +254,7 @@ int main(int argc, char *argv[]) {
 		glfwPollEvents();
 
         // Keyboard poll
-        poll_keyboard_input(window, x_move, y_move, z_move);
+        poll_keyboard_input(window, x_move, y_move, z_move, rotator.phi, rotator.theta);
 
     }
 
@@ -283,28 +283,35 @@ void create_perspective_matrix(float M[], const float &vfov, const float &aspect
     }
 }
 
-void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z)
+void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z, float &phi, float &theta)
 {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE)) {
           glfwSetWindowShouldClose(window, GL_TRUE);
     }
-    if(glfwGetKey(window, GLFW_KEY_W)) {
-      z += MOVE_SPEED;
-    }
-    if(glfwGetKey(window, GLFW_KEY_S)) {
-      z -= MOVE_SPEED;
-    }
-    if(glfwGetKey(window, GLFW_KEY_D)) {
-      x -= MOVE_SPEED;
-    }
-    if(glfwGetKey(window, GLFW_KEY_A)) {
-      x += MOVE_SPEED;
-    }
-    if(glfwGetKey(window, GLFW_KEY_SPACE)) {
-      y -= MOVE_SPEED;
-    }
-    if(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)) {
-      y += MOVE_SPEED;
+    else
+    {
+        float z_move = MOVE_SPEED*cos(phi);
+        float x_move = MOVE_SPEED*sin(phi);
+
+        if(glfwGetKey(window, GLFW_KEY_W)) {
+          z += z_move;
+          x -= x_move;
+        }
+        if(glfwGetKey(window, GLFW_KEY_S)) {
+          z -= z_move;
+        }
+        if(glfwGetKey(window, GLFW_KEY_D)) {
+          x -= MOVE_SPEED;
+        }
+        if(glfwGetKey(window, GLFW_KEY_A)) {
+          x += MOVE_SPEED;
+        }
+        if(glfwGetKey(window, GLFW_KEY_SPACE)) {
+          y -= MOVE_SPEED;
+        }
+        if(glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)) {
+          y += MOVE_SPEED;
+        }
     }
 }
 

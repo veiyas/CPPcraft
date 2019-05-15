@@ -167,27 +167,4 @@ private:
     const int Z_OFFSET;
 };
 
-//Mesh::Mesh(const int pos_x, const int pos_y, const int pos_z)
-
-
-//void Mesh::sanity_check_array() const
-//{
-//    for(size_t i = 0; i < LENGTH; i++)
-//    {
-//        for(size_t j = 0; j < HEIGHT; j++)
-//        {
-//           for(size_t k = 0; k < WIDTH; k++)
-//            {
-//                std::cout << "(" << temp_array[i][j][k].x << ", " << temp_array[i][j][k].y << ", " << temp_array[i][j][k].z << ")\n";
-//            }
-//        }
-//    }
-//}
-
-//void Mesh::sanity_check_vector() const
-//{
-//    for(auto ptr = std::begin(mesh); ptr != std::end(mesh); ++ptr)
-//        std::cout << "(" << ptr->x << ", " << ptr->y << ", " << ptr->z << ")\n";
-//}
-
 #endif // MESH_H
