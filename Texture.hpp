@@ -38,6 +38,7 @@ GLuint	type;		// Image type (3 bytes per pixel: GL_RGB, 4 bytes: GL_RGBA)
 
 private:
 
+//imageData går att generera procedurellt
 GLubyte	*imageData;	// Image data (3 or 4 bytes per pixel)
 GLuint	bpp;		// Image color depth in bits per pixel
 
