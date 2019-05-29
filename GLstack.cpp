@@ -69,6 +69,7 @@
 #include <string>
 #include <map>
 #include <iterator>
+#include <algorithm>
 
 
 /*
@@ -82,21 +83,20 @@
  * in some manner, which is somewhat awkward in this case.
  */
 
- typedef std::chrono::high_resolution_clock Clock;
+typedef std::chrono::high_resolution_clock Clock;
 
 
 //Local function declarations
 void setupViewport(GLFWwindow *window, GLfloat *P);
 void create_perspective_matrix(float M[], const float &vfov, const float &aspect, const float &znear, const float &zfar);
 void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z, float &phi, float &theta);
+void render_chunk_object(Chunk & c);
 std::map<std::string, Texture> create_texture_pool();
 
 const float MOVE_SPEED = 1.0f;
 
-int main(int argc, char *argv[]) {
-
-	TriangleSoup earthSphere;
-    Texture earthTexture;
+int main(int argc, char *argv[])
+{
     Shader the_shader;
 
  	GLint location_time, location_MV, location_P, location_tex; // Shader uniforms
@@ -177,9 +177,9 @@ int main(int argc, char *argv[]) {
 
     std::vector<Chunk> world;
 
-    for(size_t i=0; i < 3; i++)
+    for(size_t i=0; i < 4; i++)
     {
-        for(size_t j=0; j < 3; j++)
+        for(size_t j=0; j < 4; j++)
         {
             world.push_back(Chunk(i,0,j,true));
         }
@@ -234,11 +234,13 @@ int main(int argc, char *argv[]) {
                 RENDERING CODE GOES HERE
 ********************************************************/
 
-        for(size_t i=0; i < world.size(); i++)
-        {
-            world[i].add_object();
-            world[i].render();
-        }
+//        for(size_t i=0; i < world.size(); i++)
+//        {
+//            world[i].add_object();
+//            world[i].render();
+//        }
+
+        std::for_each(world.begin(), world.end(), render_chunk_object);
 
 /********************************************************
 
@@ -314,6 +316,13 @@ void poll_keyboard_input(GLFWwindow *window, float &x, float &y, float &z, float
         }
     }
 }
+
+void render_chunk_object(Chunk & c)
+{
+    c.add_object();
+    c.render();
+}
+
 
 void setupViewport(GLFWwindow *window, GLfloat *P) {
 
